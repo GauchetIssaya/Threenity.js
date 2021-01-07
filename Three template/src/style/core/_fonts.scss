@@ -1,0 +1,17 @@
+@mixin font-face($font-family, $weight, $url) {
+    @font-face{
+        font-family: '#{$font-family}';
+        src: url('../assets/fonts/#{$url}.eot');
+        src: url('../assets/fonts/#{$url}.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/#{$url}.woff2') format('woff2'), url('../assets/fonts/#{$url}.woff') format('woff'), url('../assets/fonts/#{$url}.ttf') format('truetype'), url('../assets/fonts/#{$url}.svg') format('svg');
+        font-style: normal;
+        font-display: swap;
+        font-weight: $weight;
+        -webkit-font-smoothing: antialiased;
+        -khtml-font-smoothing: antialiased;
+        -apple-font-smoothing: antialiased;
+        font-smooth: always;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+// @include font-face("Adieu-Bold", 700, "Roboto-Regular");

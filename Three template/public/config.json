@@ -1,0 +1,419 @@
+{
+    "general": {
+      "_name": "Crowd City",
+      "name": {
+        "type": "text",
+        "name": "Name of the game",
+        "value": "Crowd City Playable"
+      },
+      "icon": {
+        "type": "media",
+        "name": "Icon of the game",
+        "value": "data:image/jpeg;base64,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"
+      },
+      "ios": {
+        "type": "text",
+        "name": "AppStore link",
+        "info": "For iOS",
+        "value": "https://apps.apple.com/us/app/TODO"
+      },
+      "android": {
+        "type": "text",
+        "name": "PlayStore link",
+        "info": "For Android",
+        "value": "Not available on Android"
+      }
+    },
+    "levels": [
+      {
+        "CubeExample": {
+            "type": "object",
+            "name": "CubeExample",
+            "value": {
+                "xPos": {
+                    "type": "range",
+                    "name": "Position X",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "yPos": {
+                    "type": "range",
+                    "name": "Position Y",
+                    "value": 670,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "zPos": {
+                    "type": "range",
+                    "name": "Position Z",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "size": {
+                    "type": "range",
+                    "name": "Size",
+                    "value": 30,
+                    "step": 0.1,
+                    "min": 0.0,
+                    "max": 60.0
+                },
+                "color": {
+                    "type": "color",
+                    "name": "Color",
+                    "value": "#FFFFFF"
+                },
+                "texture": {
+                  "name": "Select the player's cube style",
+                  "value": "uvMap",
+                  "type": "select",
+                  "options": [
+                    {
+                      "name": "uvMap"
+                    }
+                  ]
+                }
+            }
+        },
+        "ModelExample": {
+          "type": "object",
+          "name": "ModelExample",
+          "value": {
+              "name": {
+                "value": "level",
+                "type": "select",
+                "options": [
+                  {
+                    "name": "level"
+                  }
+                ]
+              },
+              "xPos": {
+                  "type": "range",
+                  "name": "Position X",
+                  "value": 0,
+                  "step": 2,
+                  "min": 0,
+                  "max": 1500
+              },
+              "yPos": {
+                  "type": "range",
+                  "name": "Position Y",
+                  "value": 670,
+                  "step": 2,
+                  "min": 0,
+                  "max": 1500
+              },
+              "zPos": {
+                  "type": "range",
+                  "name": "Position Z",
+                  "value": 0,
+                  "step": 2,
+                  "min": 0,
+                  "max": 1500
+              },
+              "size": {
+                  "type": "range",
+                  "name": "Size",
+                  "value": 30,
+                  "step": 0.1,
+                  "min": 0.0,
+                  "max": 60.0
+              },
+              "color": {
+                  "type": "color",
+                  "name": "Color",
+                  "value": "#FFFFFF"
+              },
+              "texture": {
+                "name": "Select the model skin",
+                "value": "city",
+                "type": "select",
+                "options": [
+                  {
+                    "name": "city"
+                  }
+                ]
+              }
+          }
+        },
+          "RiggedModelExample": {
+            "type": "object",
+            "name": "RiggedModelExample",
+            "value": {
+                "name": {
+                  "value": "human",
+                  "type": "select",
+                  "options": [
+                    {
+                      "name": "human"
+                    }
+                  ]
+                },
+                "color": {
+                  "type": "color",
+                  "name": "Color",
+                  "value": "#FFFFFF"
+                },
+                "texture": {
+                  "name": "Select the model skin",
+                  "value": "worker",
+                  "type": "select",
+                  "options": [
+                    {
+                      "name": "worker"
+                    },
+                    {
+                      "name": "uvMap"
+                    }
+                  ]
+                },
+                "xPos": {
+                    "type": "range",
+                    "name": "Position X",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "yPos": {
+                    "type": "range",
+                    "name": "Position Y",
+                    "value": 670,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "zPos": {
+                    "type": "range",
+                    "name": "Position Z",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "size": {
+                    "type": "range",
+                    "name": "Size",
+                    "value": 2,
+                    "step": 0.1,
+                    "min": 0.0,
+                    "max": 60.0
+                }
+            }
+        },
+        "Debug": {
+          "name": "Debug",
+          "value": true,
+          "type": "select",
+          "options": [
+            {
+              "value": true,
+              "name": "True"
+            },
+            {
+              "value": false,
+              "name": "False"
+            }
+          ]
+        },
+        "LightsSettings": {
+          "type": "object",
+          "name": "Light Settings",
+          "value": {
+            "AmbientLight": {
+              "type": "object",
+              "name": "AmbientLight",
+              "value": {
+                "color": {
+                  "type": "color",
+                  "name": "Color",
+                  "value": "#FFFFFF"
+                },
+                "intensity": {
+                  "type": "range",
+                  "name": "Light Intensity",
+                  "value": 0.8,
+                  "step": 0.1,
+                  "min": 0.0,
+                  "max": 2.0
+                },
+                "xPos": {
+                    "type": "range",
+                    "name": "Position X",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "yPos": {
+                    "type": "range",
+                    "name": "Position Y",
+                    "value": 670,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                },
+                "zPos": {
+                    "type": "range",
+                    "name": "Position Z",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                }
+              }
+            },
+            "DirectionalLight": {
+              "type": "object",
+              "name": "DirectionalLight",
+              "value": {
+                  "color": {
+                      "type": "color",
+                      "name": "Color",
+                      "value": "#FFFFFF"
+                  },
+                  "intensity": {
+                    "type": "range",
+                    "name": "Light Intensity",
+                    "value": 0.8,
+                    "step": 0.1,
+                    "min": 0.0,
+                    "max": 2.0
+                  },
+                  "xPos": {
+                    "type": "range",
+                    "name": "Position X",
+                    "value": 0,
+                    "step": 2,
+                    "min": 0,
+                    "max": 1500
+                  },
+                  "yPos": {
+                      "type": "range",
+                      "name": "Position Y",
+                      "value": 20,
+                      "step": 2,
+                      "min": 0,
+                      "max": 1500
+                  },
+                  "zPos": {
+                      "type": "range",
+                      "name": "Position Z",
+                      "value": 0,
+                      "step": 2,
+                      "min": 0,
+                      "max": 1500
+                  }
+              }
+            }
+          }
+        },
+        "PostProcessing": {
+          "type": "object",
+          "name": "PostProcessing Settings",
+          "value": {
+            "exposure": {
+              "type": "range",
+              "name": "Exposure",
+              "value": 1.03,
+              "step": 0.01,
+              "min": 0,
+              "max": 2
+            },
+            "bloomStrength": {
+              "type": "range",
+              "name": "BloomStrength",
+              "value": 0.5,
+              "step": 0.01,
+              "min": 0,
+              "max": 2
+            },
+            "threshold": {
+              "type": "range",
+              "name": "Threshold",
+              "value": 0.4,
+              "step": 0.01,
+              "min": 0,
+              "max": 2
+            },
+            "radius": {
+              "type": "range",
+              "name": "Radius",
+              "value": 0.5,
+              "step": 0.01,
+              "min": 0,
+              "max": 2
+            }
+          }
+        },
+        "Camera": {
+          "type": "object",
+          "name": "Camera Settings",
+          "value": {
+            "xPos": {
+              "type": "range",
+              "name": "Position X",
+              "value": 0,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            },
+            "yPos": {
+              "type": "range",
+              "name": "Position Y",
+              "value": 15,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            },
+            "zPos": {
+              "type": "range",
+              "name": "Position Z",
+              "value": 50,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            },
+            "fov": {
+              "type": "range",
+              "name": "Fov",
+              "value": 50,
+              "step": 2,
+              "min": 0,
+              "max": 200
+            },
+            "lookAtX": {
+              "type": "range",
+              "name": "lookAt X",
+              "value": 0,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            },
+            "lookAtY": {
+              "type": "range",
+              "name": "lookAt Y",
+              "value": 0,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            },
+            "lookAtZ": {
+              "type": "range",
+              "name": "lookAt Z",
+              "value": 0,
+              "step": 2,
+              "min": 0,
+              "max": 1500
+            }
+          }
+        }
+      }
+    ]
+  }
+  

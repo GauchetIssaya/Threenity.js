@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="https://icsuite.gamebuilt.com/vsdk/2.0/dev/VSDK_2.0.js" type="application/javascript"></script> 
+</head>
+
+<body>
+
+  <div class="main">
+    <canvas class="canvas"></canvas>
+  </div>
+</body>
+
+<script>
+  $(document).ready(function() {
+      $.getJSON("/config.json", function(config) {
+        VSDK.initialize(config);
+    });
+  });
+</script>
+
+</html>
