@@ -1,6 +1,6 @@
 /* global CANNON,THREE,Detector */
 import * as THREE from 'three';
-import * as CANNON from 'cannon';
+import * as CANNON from 'cannon-es';
 
 /**
  * Adds Three.js primitives into the scene where all the Cannon bodies and shapes are.

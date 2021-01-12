@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import * as CANNON from "cannon";
+import * as CANNON from "cannon-es";
+import { threeToCannon } from 'three-to-cannon';
 import {
     Camera,
     Color,
@@ -60,30 +61,18 @@ export default class Threenity {
 
                             // Collider shapes //
 
-                            if (component.collider == "box") {
-                                 //To decide best method
+                             if (component.collider == "box") {
+                                 shape = threeToCannon(child, {type: threeToCannon.Type.BOX});
 
-                                /* box = child.geometry.boundingBox;
-                                var extent = component.extents
-                                box.getSize(size);
-                                size.multiply(scale);
-                                */
-                                
-    
-                               size.copy(scale).multiply(component.extents)
-                                shape = new CANNON.Box(
-                                    new CANNON.Vec3(
-                                       size.x/2,
-                                       size.y/2,
-                                       size.z/2
-                                    )
-                                );
                             } else if (component.collider == "sphere") {
-                                shape = new CANNON.Sphere(
-                                    component.extents.z * scale.x
-                                );
+                                 shape = threeToCannon(child, {type: threeToCannon.Type.SPHERE});
                             }
 
+                            else if (component.collider == "mesh") {
+                                shape = threeToCannon(child, {type: threeToCannon.Type.MESH});
+                                
+                           }
+ 
                             // Body copies mesh //
 
                             child.body.addShape(shape);
@@ -94,9 +83,7 @@ export default class Threenity {
 
                             child.body.object = child;
                             that.bodies.push(child.body);
-                            //that.world.bodies.push(child.body);
                             that.world.addBody(child.body);
-                            console.log(that.world)
 
 
                         }
@@ -152,7 +139,7 @@ export default class Threenity {
                         }
                     });
 
-                    //console.log(child.node);
+                    console.log(child);
                 }
             }
         });

@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import * as CANNON from 'cannon';
 import { Vector2, Vector3 } from 'three';
 
 export default class Level{

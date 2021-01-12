@@ -337,6 +337,14 @@ Debug.Log(path);
                     extents = cc.bounds.extents;
                 }
                 
+                if (rb.TryGetComponent(out MeshCollider mc))
+                {
+                    collider = "mesh";
+                    center = mc.bounds.center;
+                    extents = mc.bounds.extents;
+                }
+
+                
                 
                 
                 else if (rb.TryGetComponent(out SphereCollider sc))
@@ -381,11 +389,10 @@ Debug.Log(path);
                     if (body.TryGetComponent(out Collider collider))
                     {
                         //Debug.Log(collider.GetType());
-                        if (collider.GetType() != typeof(MeshCollider))
-                        {
-                            var rigid = new GLTFBody(body);
-                            componentContainer.Rigidbodies.Add(rigid);
-                        }
+                       
+                        var rigid = new GLTFBody(body);
+                        componentContainer.Rigidbodies.Add(rigid);
+                        
                     }
                 }
   

@@ -1,11 +1,11 @@
 //utils
 //vendors
 import * as THREE from "three";
-import * as CANNON from "cannon";
+import * as CANNON from "cannon-es";
 
 import Threenity from "../customLibrairies/Threenity";
 
-//import CannonDebugRenderer from "../customLibrairies/CannonDebugRenderer";
+import CannonDebugRenderer from "../customLibrairies/CannonDebugRenderer";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { GUI } from "three/examples/jsm/libs/dat.gui.module.js";
 
@@ -115,10 +115,10 @@ class Scene {
         this._world.solver.iterations = 10;
         this._world.broadphase = new CANNON.NaiveBroadphase();
 
-        /*this.cannonDebugRenderer = new THREE.CannonDebugRenderer(
+        this.cannonDebugRenderer = new THREE.CannonDebugRenderer(
             this._scene,
             this._world
-        );*/
+        );
     }
     _setupEngine() {
         var engine = new Threenity(
@@ -165,7 +165,7 @@ class Scene {
 
     tick() {
         this.updatePhysics();
-      //  this.cannonDebugRenderer.update();
+        this.cannonDebugRenderer.update();
         this._render();
         this.stats.update();
     }
