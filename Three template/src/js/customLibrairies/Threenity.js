@@ -61,15 +61,21 @@ export default class Threenity {
                             // Collider shapes //
 
                             if (component.collider == "box") {
-                                box = child.geometry.boundingBox;
+                                 //To decide best method
+
+                                /* box = child.geometry.boundingBox;
+                                var extent = component.extents
                                 box.getSize(size);
                                 size.multiply(scale);
-
+                                */
+                                
+    
+                               size.copy(scale).multiply(component.extents)
                                 shape = new CANNON.Box(
                                     new CANNON.Vec3(
-                                        size.x / 2,
-                                        size.y / 2,
-                                        size.z / 2
+                                       size.x/2,
+                                       size.y/2,
+                                       size.z/2
                                     )
                                 );
                             } else if (component.collider == "sphere") {
@@ -88,8 +94,11 @@ export default class Threenity {
 
                             child.body.object = child;
                             that.bodies.push(child.body);
-                            that.world.bodies.push(child.body);
-                            that.world.add(child.body);
+                            //that.world.bodies.push(child.body);
+                            that.world.addBody(child.body);
+                            console.log(that.world)
+
+
                         }
 
                         if (component.name === "Light") {

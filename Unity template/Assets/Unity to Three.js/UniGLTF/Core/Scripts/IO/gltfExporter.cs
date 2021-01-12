@@ -176,7 +176,7 @@ Debug.Log(path);
 
 
             Copy = GameObject.Instantiate(go);
-
+            Debug.Log("eiôpfiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
             // Left handed to Right handed
             Copy.transform.ReverseZ();
         }
@@ -266,6 +266,17 @@ Debug.Log(path);
                  {
                      range = light.range;
                  }
+                 
+                 // if (type == "Directional")
+                 // {
+                 //     Debug.Log("instantiating" + light.gameObject.transform.root);
+                 //     GameObject target = new GameObject(light.gameObject.name+" Target");
+                 //     Debug.Log("instantiating "+target);
+                 //     target.transform.SetParent(light.gameObject.transform);
+                 //     target.transform.localPosition += new Vector3(0,0,1);
+                 // }
+                 
+                 
                  //color = new Vector4(light.color.r*255.0f, light.color.g*255.0f, light.color.b*255.0f, light.color.a*255.0f)  ;
                  color = light.color;
                  Debug.Log(color);
@@ -796,6 +807,9 @@ Debug.Log(path);
                 // {
                 //     Debug.Log(mesh.Mesh);
                 // }
+                
+                
+                //////Problem with material assign prolly here
                 
                 ExportMeshes(gltf, bufferIndex, unityMeshes, Materials, useSparseAccessorForMorphTarget);
                 Meshes = unityMeshes.Select(x => x.Mesh).ToList();

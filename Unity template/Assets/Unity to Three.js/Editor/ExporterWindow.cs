@@ -111,11 +111,13 @@ public class ExporterWindow : EditorWindow
             }
 
           
-        }*/
+        }
+        
+        */
         
         
         
-        
+        ///////Animation ( redo entirely)
         converted = false;
         prefabPaths = new List<string>();
         ConvertAnimation(go);
@@ -129,6 +131,7 @@ public class ExporterWindow : EditorWindow
         {
             
             exporter.Prepare(go,exportAnimation,exportActive);
+            
             exporter.Export(exportActive);
         }
         var bytes = gltf.ToGlbBytes();

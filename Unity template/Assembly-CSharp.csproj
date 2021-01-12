@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MobileCity\FreeCam.cs" />
+     <Compile Include="Assets\NewBehaviourScript.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\ArrayExtensions.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\JsonParserExtensions.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\StringExtensions.cs" />
