@@ -44,8 +44,7 @@ export default class Threenity {
                 if (child.node.hasOwnProperty("components")) {
                     child.components = child.node.components;
 
-                    var box, shape;
-                    var size = new Vector3();
+                    var shape;
                     var scale = new Vector3();
                     child.getWorldScale(scale);
                     var position = new Vector3();
@@ -139,7 +138,7 @@ export default class Threenity {
                         }
                     });
 
-                    console.log(child);
+                    console.log(child.node);
                 }
             }
         });

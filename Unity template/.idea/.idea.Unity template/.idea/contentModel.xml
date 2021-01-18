@@ -11,7 +11,6 @@
           <e p="FreeCam.cs" t="Include" />
           <e p="ReadMe.txt" t="Include" />
         </e>
-        <e p="NewBehaviourScript.cs" t="Include" />
         <e p="Unity to Three.js" t="Include">
           <e p="AnimationConverter" t="Include">
             <e p="Scripts" t="Include">

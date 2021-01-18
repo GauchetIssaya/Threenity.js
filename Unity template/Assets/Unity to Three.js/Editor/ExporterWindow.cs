@@ -16,7 +16,7 @@ using Debug = UnityEngine.Debug;
 public class ExporterWindow : EditorWindow
 {
 
-    static float version = 0.3f;
+    static float version = 0.5f;
     
     public GameObject scene;
     private Texture2D m_Logo = null;

@@ -325,14 +325,14 @@ Debug.Log(path);
                 if (rb.TryGetComponent(out BoxCollider bc))
                 {
                     collider = "box";
-                    center = bc.bounds.center;
-                    extents = bc.bounds.extents;
-                    
+                    center = bc.center;
+                    extents = bc.size;
+
                 }
                 
                 if (rb.TryGetComponent(out CapsuleCollider cc))
                 {
-                    collider = "box";
+                    collider = "capsule";
                     center = cc.bounds.center;
                     extents = cc.bounds.extents;
                 }
@@ -343,15 +343,11 @@ Debug.Log(path);
                     center = mc.bounds.center;
                     extents = mc.bounds.extents;
                 }
-
-                
-                
                 
                 else if (rb.TryGetComponent(out SphereCollider sc))
                 {
                     collider = "sphere";
                     center = sc.bounds.center;
-                    
                     extents = new Vector3(sc.radius,sc.radius,sc.radius);
                 }
             }
@@ -388,11 +384,8 @@ Debug.Log(path);
                 {
                     if (body.TryGetComponent(out Collider collider))
                     {
-                        //Debug.Log(collider.GetType());
-                       
                         var rigid = new GLTFBody(body);
                         componentContainer.Rigidbodies.Add(rigid);
-                        
                     }
                 }
   
