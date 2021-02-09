@@ -92,43 +92,43 @@
      <Compile Include="Assets\Unity to Three.js\UniGLTF\UniJSON\Editor\Tests\ValidatorTests.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\UniUnlit\Editor\UniUnlitEditor.cs" />
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ProGrids">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ProGrids.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProGrids">
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProGrids.Editor">
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Unity/2019.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -323,13 +323,13 @@
  <HintPath>C:/Unity/2019.3.14f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="AnimationConverterApplication">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Assets/Unity to Three.js/AnimationConverter/Plugins/Application/AnimationConverterApplication.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Assets/Unity to Three.js/AnimationConverter/Plugins/Application/AnimationConverterApplication.dll</HintPath>
  </Reference>
  <Reference Include="AnimationConverterEditor">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Assets/Unity to Three.js/AnimationConverter/Plugins/Editor/AnimationConverterEditor.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Assets/Unity to Three.js/AnimationConverter/Plugins/Editor/AnimationConverterEditor.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/Issaya/Desktop/Unity to Three/Unity-to-Three.js/Unity template/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Unity/2019.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

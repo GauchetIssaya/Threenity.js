@@ -14,7 +14,7 @@ class RiggedModel{
     }
     
     setupCustomParams() {
-      this.speed = 0.1;
+      this.speed = 2;
       this.sinValue = 0;
     }
 
@@ -43,7 +43,9 @@ class RiggedModel{
 
     update(delta) {
       this.sinValue += 0.1
-      this.model.scene.position.x += Math.sin(this.sinValue) * this.speed;
+    //   this.model.scene.position.x = Math.sin(this.sinValue) * this.speed;
+    //   this.model.scene.position.z += this.speed * 0.04;
+
     }
 }
     

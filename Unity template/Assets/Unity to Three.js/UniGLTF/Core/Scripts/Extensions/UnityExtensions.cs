@@ -179,12 +179,16 @@ namespace UniGLTF
             foreach (Transform child in self)
             {
 //                Debug.Log("ChildName : "+childName+" child.name :  "+ child.name);
-               //+"     "+childName);
+              
+
                 if (child.name == childName)
                 {
                     
                     return child;
                 }
+
+                
+                
             }
 
             throw new KeyNotFoundException();

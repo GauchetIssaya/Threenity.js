@@ -268,11 +268,29 @@ Debug.Log(path);
                  }
                  //color = new Vector4(light.color.r*255.0f, light.color.g*255.0f, light.color.b*255.0f, light.color.a*255.0f)  ;
                  color = light.color;
-                 Debug.Log(color);
+//                 Debug.Log(color);
 
 
              }
          }
+         
+         
+         public class GLTFTexture
+         {
+            
+             public string textureAccessor { get; set; } 
+             public Vector2 textureOffset { get; set; } 
+             public Vector2 textureRepeat { get; set; } 
+             
+            
+             public GLTFTexture(TextureProperties tp)
+             {
+                 textureAccessor = tp.textureAccessor;
+                 textureOffset = tp.textureOffset;
+                 textureRepeat = tp.textureRepeat;
+             }
+         }
+         
          
          public class GLTFBody 
         {
@@ -340,12 +358,15 @@ Debug.Log(path);
 
          public class ComponentContainer
          {
+             public List<GLTFTexture> TextureProperties { get; set; }
+
              public List<GLTFBody> Rigidbodies { get; set; }
              public List<GLTFLight> Lights { get; set; }
              public List<GLTFCamera> Cameras { get; set; }
 
              public ComponentContainer()
              {
+                 TextureProperties = new List<GLTFTexture>();
                  Rigidbodies = new List<GLTFBody>();
                  Lights = new List<GLTFLight>();
                  Cameras = new List<GLTFCamera>();
@@ -356,8 +377,23 @@ Debug.Log(path);
 
             ComponentContainer componentContainer = new ComponentContainer();
             
+            TextureProperties[] textureProperties;
+            
+            textureProperties = go.GetComponents<TextureProperties>();
 
+            
+            if (textureProperties.Length > 0)
+            {
 
+                foreach (var texture in textureProperties)
+                {
+                    var text = new GLTFTexture(texture);
+                            componentContainer.TextureProperties.Add(text);
+                }
+
+            }
+            
+            
             Rigidbody[] rigidBodies;
             
             rigidBodies = go.GetComponents<Rigidbody>();
@@ -860,7 +896,7 @@ Debug.Log(path);
                     if (go.TryGetComponent(out Animator ThisAssnim) ||
                         go.TryGetComponent(out Animation ThisOtherssAnim))
                     {
-                        Debug.Log(go);
+//                        Debug.Log(go);
 
                         animators.Add(go.transform);
 

@@ -144,8 +144,4 @@ this.sceneEntities = {
 
 ## License
 
-// ?
-
-##Trello
-
-https://trello.com/invite/b/EYHXMIb9/d2f7cd7121aa3d03388320b14abaa1a8/unity-to-three
+This project is open source and available under the [MIT License](LICENSE).

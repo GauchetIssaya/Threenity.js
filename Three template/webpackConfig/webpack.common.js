@@ -108,6 +108,13 @@ module.exports = {
           encoding: 'base64'
         },
       },
+      {
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        use: [
+          'raw-loader',
+          'glslify-loader'
+        ]
+      },
     ],
   },
 }

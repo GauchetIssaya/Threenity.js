@@ -318,6 +318,30 @@ namespace UniJSON
             Key("z"); Value(v.z);
             EndMap();
         }
+        
+        public void Value(Vector4 v)
+        {
+            //CommaCheck();
+            BeginMap();
+            Key("x"); Value(v.x);
+            Key("y"); Value(v.y);
+            Key("z"); Value(v.z);
+            Key("w"); Value(v.w);
+
+            EndMap();
+        }
+        
+        
+        public void Value(Vector2 v)
+        {
+            //CommaCheck();
+            BeginMap();
+            Key("x"); Value(v.x);
+            Key("y"); Value(v.y);
+            EndMap();
+        }
+        
+        
 
         public void Value(string[] a)
         {
@@ -371,6 +395,26 @@ namespace UniJSON
         {
             BeginList();
 
+            if(a.TextureProperties != null){
+                foreach (var texture in a.TextureProperties)
+                {
+                    
+                    
+                    BeginMap();
+                    
+                    Key("name"); Value("Texture");
+                    Key("textureAccessor"); Value(texture.textureAccessor);
+                    Key("textureOffset"); Value(texture.textureOffset);
+                    Key("textureRepeat");Value(texture.textureRepeat);
+
+                    EndMap();
+                    
+                }
+                
+            }
+            
+            
+            
             if(a.Rigidbodies != null){
                 foreach (var rigidBody in a.Rigidbodies)
                 {

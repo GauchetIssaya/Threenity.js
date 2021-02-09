@@ -88,7 +88,7 @@ namespace UniGLTF
                 }
             }
 
-            if (components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
+            if (components.TextureProperties != null || components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
        
             
             

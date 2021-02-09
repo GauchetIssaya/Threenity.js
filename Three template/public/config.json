@@ -79,9 +79,9 @@
                 }
             }
         },
-        "ModelExample": {
+        "MainScene": {
           "type": "object",
-          "name": "ModelExample",
+          "name": "MainScene",
           "value": {
               "name": {
                 "value": "level",

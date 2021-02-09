@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 class AnimationComponent{
     constructor(model) {
-        this.model = model.clonedGltf ? model.clonedGltf : model.model;
+        this.model = model.model;
         this.animations = this.model.animations;
         this.actions = [];
         this.actionType = {};
@@ -52,13 +52,9 @@ class AnimationComponent{
     }
 
     playAnimation(action) {
-         action.time = 0;
-      //  action.timeScale = 2; */
-        action.enabled = true;
-        this.currentAnim = action;
+        this.currentAnim = action.getClip().name
 
         action.play();
-
     }
     
     pauseAnimation(action) {
@@ -79,24 +75,12 @@ class AnimationComponent{
         this.playAnimation(endAction)
     }
 
-    rewind(action){
-       console.log(action.time)
-       
-    }
-
     getCurrentAnim() {
         return this.currentAnim;
     }
     
     update(delta) {
-        
         this.mixer.update(delta);
-
- /*        if(this.currentAnim != null && this.currentAnim.time >= 1.3){
-            this.currentAnim.enabled = true;
-            this.currentAnim.timeScale = -2;
-          
-        } */
     }
 }
 

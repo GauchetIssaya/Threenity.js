@@ -38,6 +38,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "raw-loader": "^4.0.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "terser-webpack-plugin": "^2.3.5",
@@ -51,8 +52,8 @@
     "babel-polyfill": "^6.26.0",
     "cannon": "^0.6.2",
     "dat.gui": "^0.7.7",
+    "glslify-loader": "^2.0.0",
     "stats.js": "^0.17.0",
-    "three": "^0.121.1",
-    "tweenjs": "^1.0.2"
+    "three": "^0.121.1"
   }
 }
