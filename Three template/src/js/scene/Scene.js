@@ -12,11 +12,10 @@ import AnimationComponent from '../components/AnimationComponent';
 
 //sceneEntities
 import Lights from '../sceneEntities/Lights';
-import RiggedModel from '../sceneEntities/RiggedModel';
-import InteractiveEntity from '../sceneEntities/InteractiveEntity';
 
 import Threenity from '../components/Threenity';
 import ParticleSystemComponent from '../components/ParticleSystemComponent';
+import AnimationCloner from '../utils/AnimationCloner';
 
 
 
@@ -27,7 +26,7 @@ import DebugRenderer from "../utils/CannonDebugRenderer"
 class Scene {
     constructor(canvas, models, textures) {
         const gui = new GUI();
-
+     
         let camera = gui.addFolder('camera');
 
         this.vsdkParameters = VSDK.getParameters();
@@ -39,7 +38,7 @@ class Scene {
         this._textures = textures;
         this._models = models;
 
-        this.animationsEntities = {};
+        this.animationsEntities = [];
         this.particleSystem = [];
 
 
@@ -58,8 +57,8 @@ class Scene {
         this._setupParticleSystem();
 
         // starting animation
-        this.animationsEntities.riggedModel.playAnimation(this.animationsEntities.riggedModel.actionType.Run)
-        this.animationsEntities.riggedModel.getCurrentAnim();
+     // this.animationsEntities.riggedModel.playAnimation(this.animationsEntities.riggedModel.actionType.Run)
+     // this.animationsEntities.riggedModel.getCurrentAnim();
     }
 
 
@@ -123,19 +122,32 @@ class Scene {
 
     _createModels() {
         for (let model in this.sceneEntities) {
-            if (!this.sceneEntities[model].is3dModel) continue;
+            if (!this.sceneEntities[model].is3dModel && !this.sceneEntities[model].fromUnity ) continue;
             this.sceneEntities[model]?.build(this._models);
             this.sceneEntities[model].addToScene(this._scene);
         }
     }
 
     _createModelsAnimations() {
+
+        
+        this.animationsEntities = this.animationsEntities.concat(this._engine.animators);
         for (let model in this.sceneEntities) {
             if (!this.sceneEntities[model].is3dModel) continue;
             if(this.sceneEntities[model].isModelAnimated) {
-               this.animationsEntities[model] = new AnimationComponent(this.sceneEntities[model])
+                if(this.sceneEntities[model].fromUnity){
+                    console.log(this.sceneEntities[model].model)
+                    this.animationsEntities[model] = new AnimationComponent(this.sceneEntities[model].model)
+                }
+
+                else{
+                this.animationsEntities[model] = new AnimationComponent(this.sceneEntities[model])
+                }
             }
         }
+
+
+
     }
     
     _createEntities() {
@@ -143,20 +155,26 @@ class Scene {
         this.sceneEntities = {
             lights: new Lights(this.vsdkParameters.LightsSettings, this._engine.lights),
             // building: new Building(this.vsdkParameters.ModelExample, this.vsdkParameters.ModelExample.name, this._textures),
-            riggedModel: new RiggedModel(this.vsdkParameters.RiggedModelExample, this.vsdkParameters.RiggedModelExample.name, this._textures),
+            //riggedModel: new RiggedModel(this.vsdkParameters.RiggedModelExample, this.vsdkParameters.RiggedModelExample.name, this._textures),
         };
-        this._engine.modelScene.children.forEach(children => {
-            if(children.name === "Interactive") {
-                children.children.forEach(object => {
-                    this.sceneEntities[object.name] = new InteractiveEntity(this.vsdkParameters.CubeExample, object, object.name, this._textures);
-                });
-            }
-        });
+    
         
         for (let entity in this.sceneEntities) {
             if (this.sceneEntities[entity].is3dModel) continue;
             this.sceneEntities[entity].addToScene(this._scene);
-        }
+        } 
+
+       /*  this._engine.modelScene.children.forEach(children => {
+            if(children.name === "Interactive") {
+                 children.children.forEach(object => {
+                    console.log(object)
+                    this.sceneEntities[object.name] = new GameObject(object,true).copy(object);
+                }); 
+            } 
+        }); */
+
+
+
     }
     
     _setupCannonWorld() {
@@ -176,7 +194,8 @@ class Scene {
             this._models[this.vsdkParameters.MainScene.name],
             this._scene,
             this._world,
-            this._canvas
+            this._canvas,
+            this._textures
         );
         this._createEntities();
         this._createModels();
@@ -192,7 +211,25 @@ class Scene {
     }
 
     startGame() {
-        this.animationsEntities.riggedModel.animFade(this.animationsEntities.riggedModel.actionType.Run, this.animationsEntities.riggedModel.actionType.Walk, 1, false)
+
+        //Copy animation example
+ 
+/*         console.log(this._engine.entities["ferris wheel"])
+        this.wheel = new AnimationCloner(this._engine.entities["ferris wheel"]).model;
+  
+
+        this.animationsEntities.push(this.wheel.components['Animations'].mixer)
+
+        this._scene.add(this.wheel)
+        this.wheel.position.set(150.5,.5,this._engine.entities["ferris wheel"].getWorldPosition().z) 
+
+ */
+        
+        for (let index = 0; index < this.animationsEntities.length; index++) {
+            this.animationsEntities[index].playAnimation(this.animationsEntities[index].actions[0])
+    
+        } 
+
     }
 
     resize(width, height) {
@@ -215,11 +252,12 @@ class Scene {
         }   
 
         for(let entity in this.animationsEntities) {
+           // console.log(entity)
             this.animationsEntities[entity].update(this.delta)
         }
 
         for(let particleSystem in this.particleSystem) {
-            this.particleSystem[particleSystem].update(this.delta, this.sceneEntities.riggedModel.model.scene.position)
+        //    this.particleSystem[particleSystem].update(this.delta, this.sceneEntities.riggedModel.model.scene.position)
         }
 
         this.updatePhysics();

@@ -1,6 +1,4 @@
 import { MODELS } from '../assetsImport/models'
-import { TEXTURES } from '../assetsImport/textures'
-
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
@@ -11,9 +9,18 @@ class LoadingComponent {
         this.textures = {};
         this._modelsLoaded = 0;
         this.gltfLoader = new GLTFLoader();
+        this.textureLoader = new THREE.TextureLoader();
+        this.cache = {};
+
     }
     
     loadAssets() {
+
+
+        //find better solution to load Unity Exported textures
+        this.importAll(require.context('../../assets/modelTextures/', true,/\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i));
+        this.importAll(require.context('../../assets/images/', true,/\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i));
+
         for (const model in MODELS) {
             let promise = new Promise((resolve, reject) => {
             this.gltfLoader.load(MODELS[model].file, resolve)
@@ -24,9 +31,10 @@ class LoadingComponent {
             })
             this._promises.push(promise);
         }
-        for (const texture in TEXTURES) {
+
+         for (const texture in this.cache) {
             let promise = new Promise((resolve, reject) => {
-            new THREE.TextureLoader().load(TEXTURES[texture].file, resolve);
+            this.textureLoader.load(this.cache[texture].default, resolve);
             this.textures[texture] = {}
             })
             .then(result => {
@@ -34,10 +42,11 @@ class LoadingComponent {
                 result.flipY = false;
                 this.textures[texture] = result
             })
+
             this._promises.push(promise);
         }
-        return Promise.all(this._promises);
-
+        return Promise.all(this._promises); 
+        
     }
 
     getModels() {
@@ -47,6 +56,13 @@ class LoadingComponent {
     getTextures() {
         return this.textures
     }
+
+    
+    importAll(r) {
+        r.keys().forEach((key) => (this.cache[key] = r(key)));
+      }
+
+      
 }
 
 export default LoadingComponent;

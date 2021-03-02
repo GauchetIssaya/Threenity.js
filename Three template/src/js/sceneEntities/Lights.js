@@ -6,7 +6,7 @@ export default class Lights{
         this.lights = lights;
         this.lightHelpers = [];
 
-        this._setupHelpers();
+      //  this._setupHelpers();
     }
 
     _setupHelpers() {

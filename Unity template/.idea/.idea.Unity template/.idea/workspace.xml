@@ -30,13 +30,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../Unity/Repos/Roof Rails/Pachinko/Assets/Unity to Three.js/Editor/ExporterWindow.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/TextureProperties.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTF.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23A7799D-A2E9-41B8-8C6D-B790C607D655/92/91b4c68c/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -45,13 +49,17 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomPropeties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TexturePropeties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TextureProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTF.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TextureProperties.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
       </list>
     </option>
   </component>
@@ -92,7 +100,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612795200769</updated>
-      <workItem from="1612795206011" duration="23042000" />
+      <workItem from="1612795206011" duration="29809000" />
+      <workItem from="1612960521946" duration="4423000" />
+      <workItem from="1613657912708" duration="13456000" />
+      <workItem from="1614698440551" duration="647000" />
     </task>
     <servers />
   </component>
@@ -111,6 +122,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -120,5 +132,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1612805054042" />
+    <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1612903431692">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1612903431692" />
   </component>
 </project>

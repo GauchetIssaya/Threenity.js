@@ -1,17 +1,23 @@
 import * as THREE from 'three';
 
 class AnimationComponent{
-    constructor(model) {
-        this.model = model.model;
-        this.animations = this.model.animations;
+    constructor(model,animations) {
+        this.model = model.model ? model.model : model;
+
+        
+        this.animations = this.model.components['Animations'];
+      //  console.log( this.animations)
+
         this.actions = [];
         this.actionType = {};
         this.mixer = null;
         this.currentAnim = null;
         this.setupMixer();
         
-        for (let index = 0; index < this.model.animations.length; index++) {
-            let animation = this.model.animations[index]
+        for (let index = 0; index < this.model.components['Animations'].clips.length; index++) {
+
+            let animation = this.model.components['Animations'].clips[index]
+
             this.setupAnimations(animation, animation.name, index);
         }
 
@@ -19,11 +25,14 @@ class AnimationComponent{
     }
 
     setupMixer() {
-        this.mixer = new THREE.AnimationMixer(this.model.scene);
+
+        this.mixer = new THREE.AnimationMixer(this.model);
+
     }
     
     setupAnimations(action, actionName, animationNumber) {
-        this.actionType[actionName] = this.mixer.clipAction(this.animations[animationNumber])
+
+        this.actionType[actionName] = this.mixer.clipAction(action)
         this.actions.push(this.actionType[actionName]);
     }
 
@@ -52,7 +61,7 @@ class AnimationComponent{
     }
 
     playAnimation(action) {
-        this.currentAnim = action.getClip().name
+       // this.currentAnim = action.getClip().name
 
         action.play();
     }

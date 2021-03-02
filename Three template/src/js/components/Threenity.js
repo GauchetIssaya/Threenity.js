@@ -1,29 +1,57 @@
 import * as THREE from "three";
 import * as CANNON from "cannon";
-import {
-    PerspectiveCamera,
-    Quaternion,
-    Vector3,
-} from "three";
-import { TEXTURES } from "../assetsImport/textures";
-
-
+import {  PerspectiveCamera, Quaternion, Vector3 } from "three";
+import AnimationComponent from "../components/AnimationComponent";
 
 export default class Threenity {
-    constructor(gltf, scene, world, canvas) {
+    constructor(gltf, scene, world, canvas, textures) {
         this.model = gltf;
         this.modelScene = gltf.scene;
         this.scene = scene;
         this.world = world;
+        this.textures = textures;
+        this.entities = [];
         this.bodies = [];
         this.lights = [];
         this.camera;
         this.canvas = canvas;
-
+        this.animators = [];
+        this.clips = [];
         this.once = false;
         this._setupComponents();
     }
 
+    _setupAnimations(component, child) {
+        if (child.animations == null) {
+            child.components["Animations"].clips = [];
+        }
+
+        this.model.animations.forEach((clip) => {
+            if (clip.name === component.animationAccessor) {
+                child.components["Animations"].clips.push(clip);
+
+                child.components["Animations"].mixer = new AnimationComponent(
+                    child,
+                    clip
+                );
+
+                child.components[
+                    "Animations"
+                ].mixer.actions[0]._propertyBindings.forEach((element) => {
+                    child.traverse((children) => {
+                        if (
+                            children.userData.name ==
+                            element.binding.parsedPath.nodeName
+                        ) {
+                            element.binding.node = children;
+                            return;
+                        }
+                    });
+                });
+                this.animators.push(child.components["Animations"].mixer);
+            }
+        });
+    }
 
     _setupComponents() {
         this.modelScene.traverse((child) => {
@@ -36,9 +64,11 @@ export default class Threenity {
                 console.log("Node not found :", child);
             } else if (node != null) {
                 child.node = node;
-
+                //   console.log(child.name,"  ", child.node.name)
+                child.name = child.node.name;
+                this.entities[child.name] = child;
                 if (child.node.hasOwnProperty("components")) {
-                    child.components = child.node.components;
+                    child.components = []; //child.node.components;
 
                     let box, shape;
                     let size = new Vector3();
@@ -46,77 +76,89 @@ export default class Threenity {
                     let transform = {
                         scale: new Vector3(),
                         position: new Vector3(),
-                        quaternion: new Quaternion()
-                    }
+                        quaternion: new Quaternion(),
+                    };
 
                     child.getWorldScale(transform.scale);
                     child.getWorldPosition(transform.position);
                     child.getWorldQuaternion(transform.quaternion);
 
                     child.node.components.forEach((component) => {
-                        switch (component.name) { 
-                             case "Texture":
+                        child.components[component.name] = component;
+
+                        switch (component.name) {
+                            case "Texture":
                                 this.applyTexture(component, child);
-                                break; 
+                                break;
+                            case "Animations":
+                                this._setupAnimations(component, child);
+                                break;
                             case "RigidBody":
-                                this.setupPhysics(component, child, box, shape, size, transform);
+                                this.setupPhysics(
+                                    component,
+                                    child,
+                                    box,
+                                    shape,
+                                    size,
+                                    transform
+                                );
                                 break;
                             case "Light":
-                                this.setupLights(component, child, transform.position);    
-                            break;
+                                this.setupLights(
+                                    component,
+                                    child,
+                                    transform.position
+                                );
+                                break;
                             case "Camera":
-                                this.setupCamera(component, transform.quaternion, transform.position);    
-                            break;
+                                this.setupCamera(
+                                    component,
+                                    transform.quaternion,
+                                    transform.position,
+                                    child
+                                );
+                                break;
                         }
                     });
                 }
 
-                
+                //  console.log(child)
             }
         });
         this.setupMainScene();
     }
 
-
-    applyTexture(component,child){
-        child.material = child.material.clone()
-        let texture = new THREE.TextureLoader().load(TEXTURES[component.textureAccessor].file);
+    applyTexture(component, child) {
+        child.material = child.material.clone();
+        let texture = this.textures[component.textureAccessor];
         texture.encoding = THREE.sRGBEncoding;
         child.material.map = texture;
         child.material.map.flipY = false;
         child.material.map.wrapS = THREE.RepeatWrapping;
         child.material.map.wrapT = THREE.RepeatWrapping;
         child.material.map.repeat = component.textureRepeat;
-        child.material.map.offset = component.textureOffset;    
+        child.material.map.offset = component.textureOffset;
     }
-
-    
-    
 
     setupMainScene() {
-        this.model.scene.children.forEach(children => {
-            if(children.name === "MainScene") {
-                this.scene.add(children);
-           }
-        });
+        this.scene.add(this.model.scene);
     }
 
-    setupCamera(component, quaternion, position) {
-
+    setupCamera(component, quaternion, position, child) {
         if (component.projection == "orthographique") {
             console.log("Camera Ortho to implement !");
-        }
-        else {
+        } else {
             this.camera = new PerspectiveCamera(
                 component.fov,
                 this.canvas.width / this.canvas.height,
                 component.clippingPlanes.x,
                 component.clippingPlanes.y
-                );
+            );
         }
+
         this.camera.position.copy(position);
         this.camera.quaternion.copy(quaternion);
-    } 
+    }
 
     setupLights(light, child, position) {
         let color = new THREE.Color(
@@ -138,31 +180,24 @@ export default class Threenity {
                     color,
                     light.intensity
                 );
+
                 child.light.target = child.children[0];
                 break;
             case "Ambient":
-                child.light = new THREE.AmbientLight(
-                    color,
-                    light.intensity
-                );
+                child.light = new THREE.AmbientLight(color, light.intensity);
                 break;
-                case "Spot":
+            case "Spot":
                 child.light = new THREE.SpotLight(
                     color,
                     light.intensity,
                     light.distance,
                     light.angle
-                    );
+                );
                 child.light.target = child.children[0];
-                break; 
+                break;
             case "Rectangle":
-                child.light = new THREE.RectAreaLight(
-                    color,
-                    light.intensity,
-                    // light.width, 
-                    // light.height
-                    );
-                break; 
+                child.light = new THREE.RectAreaLight(color, light.intensity);
+                break;
             default:
                 child.light = null;
                 break;
@@ -173,10 +208,10 @@ export default class Threenity {
         }
 
         child.light.position.copy(position);
-        this.lights.push(child.light)
+        this.lights.push(child.light);
     }
 
-    setupPhysics(component, child, box, shape, size, transform ) {
+    setupPhysics(component, child, box, shape, size, transform) {
         child.body = new CANNON.Body({
             mass: component.mass,
         });
@@ -188,16 +223,10 @@ export default class Threenity {
             size.multiply(transform.scale);
 
             shape = new CANNON.Box(
-                new CANNON.Vec3(
-                    size.x / 2,
-                    size.y / 2,
-                    size.z / 2
-                )
+                new CANNON.Vec3(size.x / 2, size.y / 2, size.z / 2)
             );
         } else if (component.collider == "sphere") {
-            shape = new CANNON.Sphere(
-                component.extents.z * transform.scale.x
-            );
+            shape = new CANNON.Sphere(component.extents.z * transform.scale.x);
         }
         // Body copies mesh //
         child.body.addShape(shape);

@@ -59,7 +59,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DemoAssets\MobileCity\FreeCam.cs" />
-     <Compile Include="Assets\Unity to Three.js\TextureProperties.cs" />
+     <Compile Include="Assets\Unity to Three.js\AnimationProperties.cs" />
+     <Compile Include="Assets\Unity to Three.js\CustomProperties.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\ArrayExtensions.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\JsonParserExtensions.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\Extensions\StringExtensions.cs" />
@@ -210,8 +211,14 @@
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.ProGrids">
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProGrids.Editor">
+ <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -233,12 +240,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ProGrids">
- <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ProGrids.Editor">
- <HintPath>C:/Users/Issaya/Desktop/Unity-to-Three.js/Unity template/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Unity/2019.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

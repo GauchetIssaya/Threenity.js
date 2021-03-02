@@ -94,6 +94,7 @@ public class ExporterWindow : EditorWindow
                 {
                     UniGLTF(scene);
                 }
+
             }
         }
     }
@@ -116,15 +117,16 @@ public class ExporterWindow : EditorWindow
                 if (!child.gameObject.activeInHierarchy)
                 {
                     DestroyImmediate(child.gameObject);
+                    break;
                 }
-
+                
                 if (SeparateTextures && child.TryGetComponent(out MeshRenderer mR))
                 {
                     foreach (var material in mR.materials)
                     {
                         if (material.mainTexture != null)
                         {
-                            var properties = child.gameObject.AddComponent<TextureProperties>();
+                            var properties = child.gameObject.AddComponent<CustomProperties.TextureProperties>();
 
                             properties.textureAccessor = material.mainTexture.name;
                             properties.textureOffset = material.mainTextureOffset;
@@ -204,7 +206,7 @@ public class ExporterWindow : EditorWindow
 
     private void ConvertAnimation(GameObject go)
     {
-        if (exportAnimation)
+        /*if (exportAnimation)
         {
             if (go != null)
             {
@@ -232,7 +234,7 @@ public class ExporterWindow : EditorWindow
                     Convert(go.transform);
                 }
             }
-        }
+        }*/
     }
 
     public void Convert(Transform toConvert)
@@ -240,6 +242,7 @@ public class ExporterWindow : EditorWindow
         Debug.Log("Conversion");
         AnimationClip[] l;
         l = AnimationUtility.GetAnimationClips(toConvert.gameObject);
+        
         var pref = GetPrefabPair(toConvert.gameObject);
 
         for (int i = 0; i < l.Length; i++)
@@ -289,7 +292,7 @@ public class ExporterWindow : EditorWindow
     }
 
     private static string[] files;
-    private static string path;
+    private static string path = originalpath;
 
     private static string pathTextures;
     //public 
@@ -373,6 +376,8 @@ public class ExporterWindow : EditorWindow
 
         if (converted)
         {
+
+            UnityEngine.Debug.Log("bru?");
             GameObject prefab = AssetDatabase.LoadAssetAtPath(path2, typeof(GameObject)) as GameObject;
             AssetDatabase.CopyAsset(path2, "Assets/Unity to Three.js/Temporary/Mesh/" + toPrefab.name + ".fbx");
             createdPaths.Add("Assets/Unity to Three.js/Temporary/Mesh/" + toPrefab.name + ".fbx");
@@ -459,6 +464,7 @@ public class ExporterWindow : EditorWindow
                         var asset = AssetDatabase.LoadAssetAtPath(file, typeof(AnimationClip)) as AnimationClip;
                         var stateA1 = rootStateMachine.AddState("stateA1");
                         stateA1.motion = asset;
+                        
                         Debug.Log("Exported animation : "+asset.name);
                     }
                 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -169,6 +170,20 @@ Debug.Log(path);
                         meshes.Add(meshFilter.sharedMesh);
                     }
                 }
+
+
+                if (child.TryGetComponent(out Light light))
+                {
+                    if (light.type.ToString() == "Directional")
+                    {
+                        Debug.Log("dierctional");
+                        GameObject target = new GameObject("Target");
+                        target.transform.parent = light.transform;
+                        target.transform.rotation = light.transform.rotation;
+                        target.transform.position = light.transform.position + light.transform.forward;
+                        
+                    }
+                }
             }
 
 
@@ -266,6 +281,9 @@ Debug.Log(path);
                  {
                      range = light.range;
                  }
+
+                
+
                  //color = new Vector4(light.color.r*255.0f, light.color.g*255.0f, light.color.b*255.0f, light.color.a*255.0f)  ;
                  color = light.color;
 //                 Debug.Log(color);
@@ -283,13 +301,25 @@ Debug.Log(path);
              public Vector2 textureRepeat { get; set; } 
              
             
-             public GLTFTexture(TextureProperties tp)
+             public GLTFTexture(CustomProperties.TextureProperties tp)
              {
                  textureAccessor = tp.textureAccessor;
                  textureOffset = tp.textureOffset;
                  textureRepeat = tp.textureRepeat;
              }
          }
+         
+         public class GLTFAnimation
+         {
+             public string animationAccessor { get; set; }
+             public GLTFAnimation(CustomProperties.AnimationProperties ap)
+             {
+                 animationAccessor = ap.animationAccessor;
+                 
+             }
+         }
+         
+         
          
          
          public class GLTFBody 
@@ -359,6 +389,7 @@ Debug.Log(path);
          public class ComponentContainer
          {
              public List<GLTFTexture> TextureProperties { get; set; }
+             public List<GLTFAnimation> AnimationProperties { get; set; }
 
              public List<GLTFBody> Rigidbodies { get; set; }
              public List<GLTFLight> Lights { get; set; }
@@ -367,19 +398,22 @@ Debug.Log(path);
              public ComponentContainer()
              {
                  TextureProperties = new List<GLTFTexture>();
+                 AnimationProperties = new List<GLTFAnimation>();
                  Rigidbodies = new List<GLTFBody>();
                  Lights = new List<GLTFLight>();
                  Cameras = new List<GLTFCamera>();
              }
          }
+
+         public List<float> AnimationID = new List<float>();
          public ComponentContainer GetComponents(GameObject go)
         {
 
             ComponentContainer componentContainer = new ComponentContainer();
             
-            TextureProperties[] textureProperties;
+            CustomProperties.TextureProperties[] textureProperties;
             
-            textureProperties = go.GetComponents<TextureProperties>();
+            textureProperties = go.GetComponents<CustomProperties.TextureProperties>();
 
             
             if (textureProperties.Length > 0)
@@ -392,8 +426,65 @@ Debug.Log(path);
                 }
 
             }
+            /////Animation shit
             
-            
+            var Animationclips = new List<AnimationClip>();
+            var animato = go.GetComponent<Animator>();
+            var animatio = go.GetComponent<Animation>();
+            if (animato != null)
+            {
+                Animationclips = AnimationExporter.GetAnimationClips(animato);
+            }
+            if (animatio != null)
+            {
+                
+              
+                Animationclips = AnimationExporter.GetAnimationClips(animatio);
+            }
+
+            if (Animationclips.Any())
+            {
+
+                foreach (AnimationClip clip in Animationclips)
+                {
+
+                    if (clip.humanMotion)
+                    {
+                    }
+
+
+               
+                        //Assign animation
+                        var properties = go.AddComponent<CustomProperties.AnimationProperties>();
+                        Debug.Log("AnimationAdd");
+                        properties.animationAccessor = clip.name;
+                      
+                    
+                }
+
+                CustomProperties.AnimationProperties[] animationProperties;
+                animationProperties = go.GetComponents<CustomProperties.AnimationProperties>();
+
+
+
+                if (animationProperties.Length > 0)
+                {
+                    foreach (var animation in animationProperties)
+                    {
+                        var anim = new GLTFAnimation(animation);
+                        componentContainer.AnimationProperties.Add(anim);
+
+                    }
+
+                }
+
+         
+
+            }
+
+
+
+
             Rigidbody[] rigidBodies;
             
             rigidBodies = go.GetComponents<Rigidbody>();
@@ -735,7 +826,9 @@ Debug.Log(path);
                 gltf.meshes.Add(gltfMesh);
             }
         }
-        
+
+
+        public List<CustomProperties.AnimationProperties> Animations;
         
         public void FromGameObject(glTF gltf, GameObject go,bool exportActive, bool useSparseAccessorForMorphTarget = false)
         {
@@ -948,60 +1041,68 @@ Debug.Log(path);
 
                                 if (clip.humanMotion)
                                 {
-
                                 }
 
-                                var animationWithCurve = AnimationExporter.Export(clip, anim.transform, Nodes);
-
-                                foreach (var kv in animationWithCurve.SamplerMap)
+                                if (!AnimationID.Contains(clip.GetInstanceID()))
                                 {
-                                    var sampler = animationWithCurve.Animation.samplers[kv.Key];
 
 
-                                    var inputAccessorIndex =
-                                        gltf.ExtendBufferAndGetAccessorIndex(bufferIndex, kv.Value.Input);
-                                    sampler.input = inputAccessorIndex;
+                                    var animationWithCurve = AnimationExporter.Export(clip, anim.transform, Nodes);
 
-                                    var outputAccessorIndex =
-                                        gltf.ExtendBufferAndGetAccessorIndex(bufferIndex, kv.Value.Output);
-                                    sampler.output = outputAccessorIndex;
 
-                                    // modify accessors
-                                    var outputAccessor = gltf.accessors[outputAccessorIndex];
-
-                                    var channel = animationWithCurve.Animation.channels.First(x => x.sampler == kv.Key);
-                                    switch (glTFAnimationTarget.GetElementCount(channel.target.path))
+                                    foreach (var kv in animationWithCurve.SamplerMap)
                                     {
-                                        case 1:
-                                            outputAccessor.type = "SCALAR";
-                                            //outputAccessor.count = ;
-                                            break;
-                                        case 3:
-                                            outputAccessor.type = "VEC3";
-                                            outputAccessor.count /= 3;
-                                            //   outputAccessor.max 
-                                            // outputAccessor.min
-
-                                            break;
-
-                                        case 4:
-                                            outputAccessor.type = "VEC4";
-                                            outputAccessor.count /= 4;
-                                            break;
+                                        var sampler = animationWithCurve.Animation.samplers[kv.Key];
 
 
-                                        default:
-                                            throw new NotImplementedException();
+                                        var inputAccessorIndex =
+                                            gltf.ExtendBufferAndGetAccessorIndex(bufferIndex, kv.Value.Input);
+                                        sampler.input = inputAccessorIndex;
+
+                                        var outputAccessorIndex =
+                                            gltf.ExtendBufferAndGetAccessorIndex(bufferIndex, kv.Value.Output);
+                                        sampler.output = outputAccessorIndex;
+
+                                        // modify accessors
+                                        var outputAccessor = gltf.accessors[outputAccessorIndex];
+
+                                        var channel =
+                                            animationWithCurve.Animation.channels.First(x => x.sampler == kv.Key);
+                                        switch (glTFAnimationTarget.GetElementCount(channel.target.path))
+                                        {
+                                            case 1:
+                                                outputAccessor.type = "SCALAR";
+                                                //outputAccessor.count = ;
+                                                break;
+                                            case 3:
+                                                outputAccessor.type = "VEC3";
+                                                outputAccessor.count /= 3;
+                                                //   outputAccessor.max 
+                                                // outputAccessor.min
+
+                                                break;
+
+                                            case 4:
+                                                outputAccessor.type = "VEC4";
+                                                outputAccessor.count /= 4;
+                                                break;
+
+
+                                            default:
+                                                throw new NotImplementedException();
+
+                                        }
+
+
 
                                     }
 
-
+                                    animationWithCurve.Animation.name = clip.name;
+                                    gltf.animations.Add(animationWithCurve.Animation);
+                                    
+                                    AnimationID.Add(clip.GetInstanceID());
 
                                 }
-
-                                gltf.animations.Add(animationWithCurve.Animation);
-
-
                             }
                         }
                     }

@@ -75,7 +75,7 @@ namespace UniGLTF
         static int GetNodeIndex(Transform root, List<Transform> nodes, string path)
         {
 
-         //   Debug.Log("root :"+ root + " path : "+ path);
+            Debug.Log("root :"+ root + " path : "+ path);
             var descendant = root.GetFromPath(path);
             return nodes.IndexOf(descendant);
         }
@@ -132,8 +132,14 @@ namespace UniGLTF
             }
         }
 
+        
+        public static List<float> AnimationID = new List<float>();
         public static AnimationWithSampleCurves Export(AnimationClip clip, Transform root, List<Transform> nodes)
         {
+
+           
+            
+
             var animation = new AnimationWithSampleCurves
             {
                 Animation = new glTFAnimation(),
@@ -232,7 +238,7 @@ namespace UniGLTF
                 }
             }
 #endif
-
+            
             return animation;
         }
 #endif

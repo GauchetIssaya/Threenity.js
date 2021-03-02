@@ -42,20 +42,11 @@ namespace UniGLTF
         [JsonSchema(Minimum = 0)]
         public int camera = -1;
 
-        //Physics
+        //Custom
         
-        public bool isBody;  
-        public float mass;
-        public int isKinematic;
-        public Vector3 extents;
-        public Vector3 center;
-        public string collider;
-        public gltfExporter.ComponentContainer components;
-        public List<int> contacts;
 
-        public Rigidbody rigidBody;
-        // empty schemas
-        public glTFNode_extensions extensions;
+        public gltfExporter.ComponentContainer components; 
+
         public glTFNode_extra extras = new glTFNode_extra();
         
         protected override void SerializeMembers(GLTFJsonFormatter f)
@@ -88,7 +79,7 @@ namespace UniGLTF
                 }
             }
 
-            if (components.TextureProperties != null || components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
+            if (components.TextureProperties != null || components.AnimationProperties != null || components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
        
             
             

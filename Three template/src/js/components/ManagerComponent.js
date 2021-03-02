@@ -6,10 +6,13 @@ class ManagerComponent {
     }
     
     setup(models, textures) {
+        this.renameAssets(models,textures);
         this._setupThree(models, textures);
         this.resize();
         this._setupEventListeners();
     }
+
+ 
 
     _setupThree(models, textures) {
         this.threeScene = new Scene(this.canvas, models, textures);
@@ -69,6 +72,14 @@ class ManagerComponent {
         }
         this.threeScene.mouseMoveHandler(e);
     }
+
+    renameAssets(models,textures){  
+        Object.keys(textures).forEach(key => {
+          delete Object.assign(textures, {[(key.split('.').slice(0, -1).join('.')).substring(2)]: textures[key] })[key];
+          });
+    }
+
+    
 
 }
 

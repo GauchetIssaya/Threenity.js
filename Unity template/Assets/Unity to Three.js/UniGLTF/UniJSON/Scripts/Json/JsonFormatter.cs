@@ -413,6 +413,23 @@ namespace UniJSON
                 
             }
             
+            if(a.AnimationProperties != null){
+                foreach (var animation in a.AnimationProperties)
+                {
+
+                    BeginMap();
+                    
+                    Key("name"); Value("Animations");
+//                    Debug.Log(animation.animationAccessor);
+                    Key("animationAccessor"); Value(animation.animationAccessor);
+                    EndMap();
+                    
+                }
+                
+            }
+            
+            
+            
             
             
             if(a.Rigidbodies != null){

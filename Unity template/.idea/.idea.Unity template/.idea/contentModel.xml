@@ -22,6 +22,8 @@
               </e>
             </e>
           </e>
+          <e p="AnimationProperties.cs" t="Include" />
+          <e p="CustomProperties.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="Bru.cs" t="Include" />
             <e p="BruEditor.cs" t="Include" />
@@ -29,7 +31,6 @@
             <e p="NewBehaviourScript.cs" t="Include" />
             <e p="PresetImportPerFolder.cs" t="Include" />
           </e>
-          <e p="TextureProperties.cs" t="Include" />
           <e p="UniGLTF" t="Include">
             <e p="Core" t="Include">
               <e p="Editor" t="Include">
