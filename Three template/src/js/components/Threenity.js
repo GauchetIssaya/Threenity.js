@@ -21,39 +21,9 @@ export default class Threenity {
         this._setupComponents();
     }
 
-    _setupAnimations(component, child) {
-        if (child.animations == null) {
-            child.components["Animations"].clips = [];
-        }
-
-        this.model.animations.forEach((clip) => {
-            if (clip.name === component.animationAccessor) {
-                child.components["Animations"].clips.push(clip);
-
-                child.components["Animations"].mixer = new AnimationComponent(
-                    child,
-                    clip
-                );
-
-                child.components[
-                    "Animations"
-                ].mixer.actions[0]._propertyBindings.forEach((element) => {
-                    child.traverse((children) => {
-                        if (
-                            children.userData.name ==
-                            element.binding.parsedPath.nodeName
-                        ) {
-                            element.binding.node = children;
-                            return;
-                        }
-                    });
-                });
-                this.animators.push(child.components["Animations"].mixer);
-            }
-        });
-    }
-
+   
     _setupComponents() {
+
         this.modelScene.traverse((child) => {
             let gameObjectName = child.userData.name;
             let node = this.model.parser.json.nodes.find((element) => {
@@ -64,7 +34,6 @@ export default class Threenity {
                 console.log("Node not found :", child);
             } else if (node != null) {
                 child.node = node;
-                //   console.log(child.name,"  ", child.node.name)
                 child.name = child.node.name;
                 this.entities[child.name] = child;
                 if (child.node.hasOwnProperty("components")) {
@@ -83,6 +52,11 @@ export default class Threenity {
                     child.getWorldPosition(transform.position);
                     child.getWorldQuaternion(transform.quaternion);
 
+
+
+                    if(child.node.material >= 0){
+                        this.applyMaterial(child);
+                    }
                     child.node.components.forEach((component) => {
                         child.components[component.name] = component;
 
@@ -129,6 +103,7 @@ export default class Threenity {
     }
 
     applyTexture(component, child) {
+         
         child.material = child.material.clone();
         let texture = this.textures[component.textureAccessor];
         texture.encoding = THREE.sRGBEncoding;
@@ -137,7 +112,12 @@ export default class Threenity {
         child.material.map.wrapS = THREE.RepeatWrapping;
         child.material.map.wrapT = THREE.RepeatWrapping;
         child.material.map.repeat = component.textureRepeat;
-        child.material.map.offset = component.textureOffset;
+        child.material.map.offset = component.textureOffset; 
+    }
+
+    applyMaterial(child){
+     //   console.log(this.model.parser)
+        child.material = this.model.parser.materials[child.node.material]  
     }
 
     setupMainScene() {
@@ -257,4 +237,39 @@ export default class Threenity {
             console.log("Child not found");
         }
     }
+
+    _setupAnimations(component, child) {
+        if (child.animations == null) {
+            child.components["Animations"].clips = [];
+        }
+
+        this.model.animations.forEach((clip) => {
+            if (clip.name === component.animationAccessor) {
+                child.components["Animations"].clips.push(clip);
+
+                child.components["Animations"].mixer = new AnimationComponent(
+                    child,
+                    clip
+                );
+
+                child.components[
+                    "Animations"
+                ].mixer.actions[0]._propertyBindings.forEach((element) => {
+                    child.traverse((children) => {
+                        if (
+                            children.userData.name ==
+                            element.binding.parsedPath.nodeName
+                        ) {
+                            element.binding.node = children;
+                            return;
+                        }
+                    });
+                });
+                this.animators.push(child.components["Animations"].mixer);
+            }
+        });
+    }
+
+
+
 }

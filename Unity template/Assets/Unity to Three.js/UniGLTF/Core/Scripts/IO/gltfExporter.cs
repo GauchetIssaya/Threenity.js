@@ -29,35 +29,6 @@ namespace UniGLTF
             return Selection.activeObject != null && Selection.activeObject is GameObject;
         }
 
-        //[MenuItem(CONVERT_HUMANOID_KEY, false, 1)]
-        /*private static void ExportFromMenu()
-        {
-            var go = Selection.activeObject as GameObject;
-            var path = EditorUtility.SaveFilePanel(
-                    "Save glb",
-                    "",
-                    go.name + ".glb",
-                    "glb");
-            if (string.IsNullOrEmpty(path))
-            {
-                return;
-            }
-Debug.Log(path);
-            var gltf = new glTF();
-            using (var exporter = new gltfExporter(gltf))
-            {
-                exporter.Prepare(go);
-                exporter.Export();
-            }
-            var bytes = gltf.ToGlbBytes();
-            File.WriteAllBytes(path, bytes);
-
-            if (path.StartsWithUnityAssetPath())
-            {
-                AssetDatabase.ImportAsset(path.ToUnityRelativePath());
-                AssetDatabase.Refresh();
-            }
-        }*/
 #endif
 
         glTF glTF;
@@ -134,7 +105,6 @@ Debug.Log(path);
         public virtual void Prepare(GameObject go, bool animations, bool inactive)
         {
             exportAnimations = animations;
-            //////////////////////////////////////////////////////////////////////
             meshes = new List<Mesh>();
             // foreach (Transform child in go.transform)
             // {
@@ -176,7 +146,6 @@ Debug.Log(path);
                 {
                     if (light.type.ToString() == "Directional")
                     {
-                        Debug.Log("dierctional");
                         GameObject target = new GameObject("Target");
                         target.transform.parent = light.transform;
                         target.transform.rotation = light.transform.rotation;
@@ -422,7 +391,7 @@ Debug.Log(path);
                 foreach (var texture in textureProperties)
                 {
                     var text = new GLTFTexture(texture);
-                            componentContainer.TextureProperties.Add(text);
+                    componentContainer.TextureProperties.Add(text);
                 }
 
             }
@@ -456,7 +425,7 @@ Debug.Log(path);
                
                         //Assign animation
                         var properties = go.AddComponent<CustomProperties.AnimationProperties>();
-                        Debug.Log("AnimationAdd");
+                        Debug.Log("Remember to turn off when not exporting anims");
                         properties.animationAccessor = clip.name;
                       
                     
@@ -547,11 +516,14 @@ Debug.Log(path);
 
 
 
-         glTFNode ExportNode(Transform x, List<Transform> nodes, List<Mesh> meshes, List<SkinnedMeshRenderer> skins)
+         glTFNode ExportNode(Transform x, List<Transform> nodes, List<Mesh> meshes, List<SkinnedMeshRenderer> skins,List<Material> materials)
         {
 
+
+         
             var container =  GetComponents(x.gameObject);
             
+
             var node = new glTFNode
             {
                 name = x.name,
@@ -560,6 +532,7 @@ Debug.Log(path);
                 rotation = x.transform.localRotation.ToArray(),
                 translation = x.transform.localPosition.ToArray(),
                 scale = x.transform.localScale.ToArray(),
+                
                 //Components
                 components = container,
 
@@ -569,6 +542,9 @@ Debug.Log(path);
             if (meshFilter != null)
             {
                 node.mesh = meshes.IndexOf(meshFilter.sharedMesh);
+                node.material = materials.IndexOf(x.GetComponent<Renderer>().sharedMaterials[0]);
+                Debug.Log(node.material);
+
             }
 
             var skinnredMeshRenderer = x.GetComponent<SkinnedMeshRenderer>();
@@ -649,10 +625,16 @@ Debug.Log(path);
                 {
                     attributes = attributes,
                     indices = indicesAccessorIndex,
-                    mode = 4, // triangels ?
+                    mode = 4, // triangles ?
                     material = unityMaterials.IndexOf(materials[j])
                 });
+                
+               
+           
+                    
             }
+
+            
             return gltfMesh;
         }
 
@@ -796,6 +778,8 @@ Debug.Log(path);
             List<MeshWithRenderer> unityMeshes, List<Material> unityMaterials,
             bool useSparseAccessorForMorphTarget)
         {
+            
+
 
             for (int i = 0; i < unityMeshes.Count; ++i)
             {
@@ -807,6 +791,9 @@ Debug.Log(path);
                     x.Rendererer.name,
                     mesh, materials, unityMaterials);
 
+
+                
+                
                 for (int j = 0; j < mesh.blendShapeCount; ++j)
                 {
                     var morphTarget = ExportMorphTarget(gltf, bufferIndex,
@@ -816,15 +803,20 @@ Debug.Log(path);
                     //
                     // all primitive has same blendShape
                     //
+
                     for (int k = 0; k < gltfMesh.primitives.Count; ++k)
                     {
                         gltfMesh.primitives[k].targets.Add(morphTarget);
                         gltfMesh.primitives[k].extras.targetNames.Add(mesh.GetBlendShapeName(j));
+
                     }
                 }
-
+                
                 gltf.meshes.Add(gltfMesh);
+
+
             }
+
         }
 
 
@@ -889,13 +881,12 @@ Debug.Log(path);
                     })
                     .Where(x =>
                     {
-                        
                         if (x.Mesh == null)
                         {
                             return false;
                         }
                         if (x.Rendererer.sharedMaterials == null
-                        || x.Rendererer.sharedMaterials.Length == 0)
+                            || x.Rendererer.sharedMaterials.Length == 0)
                         {
                             return false;
                         }
@@ -903,7 +894,9 @@ Debug.Log(path);
                         return true;
                     })
                     .ToList();
-
+                
+                
+                
                 var a  = new List<Mesh>();
                 var b  = new List<MeshWithRenderer>();
                 
@@ -921,14 +914,11 @@ Debug.Log(path);
                 unityMeshes = new List<MeshWithRenderer>();
                 unityMeshes = b;
                 
-                // foreach (var mesh in unityMeshes)
-                // {
-                //     Debug.Log(mesh.Mesh);
-                // }
                 
                 ExportMeshes(gltf, bufferIndex, unityMeshes, Materials, useSparseAccessorForMorphTarget);
                 Meshes = unityMeshes.Select(x => x.Mesh).ToList();
                 #endregion
+                
 
                 #region Skins
                 var unitySkins = Nodes
@@ -937,7 +927,17 @@ Debug.Log(path);
                         && x.bones != null
                         && x.bones.Length > 0)
                     .ToList();
-                gltf.nodes = Nodes.Select(x => ExportNode(x, Nodes, unityMeshes.Select(y => y.Mesh).ToList(), unitySkins)).ToList();
+
+                
+                
+                gltf.nodes = Nodes.Select(x => ExportNode(x, Nodes, unityMeshes.Select(y => y.Mesh).ToList(), unitySkins,Materials)).ToList();
+                
+                
+                foreach (var mesh in gltf.nodes)
+                {
+//                    Debug.Log(mesh.name);
+                }
+                
                 
                 gltf.scenes = new List<gltfScene>
                 {

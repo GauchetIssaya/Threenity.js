@@ -2,6 +2,9 @@
 using System.IO;
 using UnityEngine;
 
+#pragma warning disable 0649 // variable declared but not used.
+
+
 
 namespace UniJSON
 {

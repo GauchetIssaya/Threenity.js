@@ -75,7 +75,7 @@ namespace UniGLTF
         static int GetNodeIndex(Transform root, List<Transform> nodes, string path)
         {
 
-            Debug.Log("root :"+ root + " path : "+ path);
+//            Debug.Log("root :"+ root + " path : "+ path);
             var descendant = root.GetFromPath(path);
             return nodes.IndexOf(descendant);
         }

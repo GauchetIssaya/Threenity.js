@@ -208,6 +208,9 @@ public class Widget : Editor
         
     }
 
+#pragma warning disable 0168 // variable declared but not used.
+
+    
     private static void ApplyAnimator()
     {
         AnimationClip[] animationClips;

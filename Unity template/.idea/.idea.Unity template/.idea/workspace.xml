@@ -34,13 +34,18 @@
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/Editor/ModelImportManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E90BEB44-6898-4ECF-B706-59AC067ECC5C/02/761c7382/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFMesh.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/JsonSerializableBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTF.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFAnimation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23A7799D-A2E9-41B8-8C6D-B790C607D655/92/91b4c68c/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -50,16 +55,20 @@
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomPropeties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TexturePropeties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TextureProperties.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTF.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/Editor/ModelImportManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFMesh.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" />
       </list>
     </option>
   </component>
@@ -103,7 +112,10 @@
       <workItem from="1612795206011" duration="29809000" />
       <workItem from="1612960521946" duration="4423000" />
       <workItem from="1613657912708" duration="13456000" />
-      <workItem from="1614698440551" duration="647000" />
+      <workItem from="1614698440551" duration="8252000" />
+      <workItem from="1614815496810" duration="477000" />
+      <workItem from="1614868012544" duration="15394000" />
+      <workItem from="1615370052306" duration="6740000" />
     </task>
     <servers />
   </component>
@@ -128,10 +140,17 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="616" y="240" key="run.anything.popup" timestamp="1612805054042">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1614876832016">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1612805054042" />
+    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614876832016" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1614728177009" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1615380549139">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2536" y="173" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614873764539" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615380549139" />
     <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1612903431692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

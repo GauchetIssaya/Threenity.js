@@ -12,9 +12,14 @@ using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+
+#pragma warning disable 0649 // variable declared but not used.
+
+
+
 public class ExporterWindow : EditorWindow
 {
-    static float version = 0.5f;
+    static float version = 0.7f;
 
     public GameObject scene;
     private Texture2D m_Logo = null;
@@ -32,7 +37,7 @@ public class ExporterWindow : EditorWindow
     private new string name;
 
     bool DracoCompress;
-    bool SeparateTextures;
+
     bool CreateFile;
 
     void OnGUI()
@@ -42,35 +47,18 @@ public class ExporterWindow : EditorWindow
         GUILayout.Label("Unity to GLTF : ", EditorStyles.largeLabel);
         GUILayout.Space(30);
         scene = EditorGUILayout.ObjectField("Scene container", scene, typeof(GameObject), true) as GameObject;
-        CreateFile = GUILayout.Toggle(CreateFile, "Create File");
-        if (!CreateFile)
+    
+
+        
+        if (GUILayout.Button("Export Folder : " + originalpath))
         {
-            if (GUILayout.Button("Export File : " + originalpath))
-            {
-                GetPathFile();
-            }
+            GetPathFolder();
         }
-
-        else
-        {
-            if (GUILayout.Button("Export Folder : " + originalpath))
-            {
-                GetPathFolder();
-            }
-        }
-
-
+        
         GUILayout.Label("Name : ", EditorStyles.largeLabel);
         name = GUILayout.TextField(name);
 
-        SeparateTextures = GUILayout.Toggle(SeparateTextures, "Separate Textures");
-        if (SeparateTextures)
-        {
-            if (GUILayout.Button("Export Folder Textures : " + originalTexturePath))
-            {
-                GetPathFolderTextures();
-            }
-        }
+  
 
         exportAnimation = GUILayout.Toggle(exportAnimation, "Export Animations");
         exportActive = GUILayout.Toggle(exportActive, "Export Inactive Objects");
@@ -83,18 +71,15 @@ public class ExporterWindow : EditorWindow
                 name = scene.name;
             }
 
-            if (path != String.Empty)
+            if (isThreenity)
             {
-                if (SeparateTextures && originalTexturePath != String.Empty)
-                {
-                    UniGLTF(scene);
-                }
+                CleanFolder();
+                UniGLTF(scene);
+            }
 
-                else if (!SeparateTextures)
-                {
-                    UniGLTF(scene);
-                }
-
+            else
+            {
+                Debug.LogError("Threenity project not attached");
             }
         }
     }
@@ -120,10 +105,23 @@ public class ExporterWindow : EditorWindow
                     break;
                 }
                 
-                if (SeparateTextures && child.TryGetComponent(out MeshRenderer mR))
+                if (child.TryGetComponent(out MeshRenderer mR))
                 {
-                    foreach (var material in mR.materials)
+
+
+                   
+
+                    
+                    
+                    var materials = new List<Material>();
+                    foreach (var material in mR.sharedMaterials)
                     {
+                        materials.Add(new Material(material));
+                    }
+
+                    foreach (var material in materials)
+                    {
+                        
                         if (material.mainTexture != null)
                         {
                             var properties = child.gameObject.AddComponent<CustomProperties.TextureProperties>();
@@ -147,8 +145,7 @@ public class ExporterWindow : EditorWindow
                                 Graphics.Blit(material.mainTexture, renderTex);
                                 RenderTexture previous = RenderTexture.active;
                                 RenderTexture.active = renderTex;
-                                Texture2D readableText = new Texture2D(material.mainTexture.width,
-                                    material.mainTexture.height);
+                                Texture2D readableText = new Texture2D(material.mainTexture.width,material.mainTexture.height);
                                 readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
                                 readableText.Apply();
                                 RenderTexture.active = previous;
@@ -157,6 +154,7 @@ public class ExporterWindow : EditorWindow
                                 File.WriteAllBytes(filename, readableText.EncodeToPNG());
                             }
 
+                            mR.material = material;
                             material.mainTexture = null;
                         }
                     }
@@ -204,9 +202,23 @@ public class ExporterWindow : EditorWindow
         Cleanup();
     }
 
+    private void CleanFolder()
+    {
+        DirectoryInfo di = new DirectoryInfo(originalTexturePath);
+
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete(); 
+        }
+        foreach (DirectoryInfo dir in di.GetDirectories())
+        {
+            dir.Delete(true); 
+        }
+    }
+
     private void ConvertAnimation(GameObject go)
     {
-        /*if (exportAnimation)
+        if (exportAnimation)
         {
             if (go != null)
             {
@@ -234,7 +246,7 @@ public class ExporterWindow : EditorWindow
                     Convert(go.transform);
                 }
             }
-        }*/
+        }
     }
 
     public void Convert(Transform toConvert)
@@ -301,23 +313,30 @@ public class ExporterWindow : EditorWindow
     private static string originalpath;
     private static string originalTexturePath;
 
-    private static void GetPathFile()
-    {
-        path = EditorUtility.OpenFilePanel("Export Path", "", "glb,gltf");
-        originalpath = path;
-    }
 
+    private static bool isThreenity;
     private static void GetPathFolder()
     {
-        path = EditorUtility.OpenFolderPanel("Export Folder", "", "");
-        originalpath = path;
+        path = EditorUtility.OpenFolderPanel("Export Path", "", "");
+        if (Directory.Exists(path + @"\models") && Directory.Exists(path + @"\modelTextures"))
+        {
+            originalpath = path + @"/models/Level.glb";
+            originalTexturePath = path + @"/modelTextures";
+            path =  path + @"/models/Level.glb";
+            Debug.Log("Threenity detected");
+            isThreenity = true;
+
+        }
+
+        else
+        {
+            Debug.LogError("Threenity not detected!");
+            isThreenity = false;
+        }
+   
     }
 
-    private static void GetPathFolderTextures()
-    {
-        pathTextures = EditorUtility.OpenFolderPanel("Export Textures Folder", "", "");
-        originalTexturePath = pathTextures;
-    }
+
 
 
     public static List<string> prefabPaths = new List<string>();

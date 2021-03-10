@@ -11,8 +11,18 @@ using System.Text.RegularExpressions;
 /// importing assets. Presets can be defined/selected/edited/saved and are stored in EditorPrefs.
 /// The saved parameters are applied on model import by the ModelImportProcessor script.
 /// </summary>
+///
+///
+///
+///
+
+
+#pragma warning disable 0618 // variable declared but not used.
+
+
 public class ModelImportManager : EditorWindow
 {
+	
 	/// PRIVATE ===============================================================
  
 	/// <summary>

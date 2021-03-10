@@ -32,6 +32,7 @@ namespace UniGLTF
 
         [JsonSchema(Minimum = 0)]
         public int mesh = -1;
+        public int material = -1;
 
         [JsonSchema(Dependencies = new string[] { "mesh" }, Minimum = 0)]
         public int skin = -1;
@@ -51,6 +52,7 @@ namespace UniGLTF
         
         protected override void SerializeMembers(GLTFJsonFormatter f)
         {
+            
             if (children != null && children.Any())
             {
                 f.Key("children"); f.BeginList();
@@ -68,6 +70,8 @@ namespace UniGLTF
             if (scale != null) f.KeyValue(() => scale);
 
             if (mesh >= 0) f.KeyValue(() => mesh);
+            if (material >= 0) f.KeyValue(() => material);
+
             if (camera >= 0) f.KeyValue(() => camera);
             if (skin >= 0)
             {
@@ -78,7 +82,6 @@ namespace UniGLTF
                     f.KeyValue(() => extras);
                 }
             }
-
             if (components.TextureProperties != null || components.AnimationProperties != null || components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
        
             

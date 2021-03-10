@@ -206,7 +206,6 @@ class Scene {
  
     
     _start() {
-        // this._createModels();
         this._isReady = true;
     }
 
@@ -224,6 +223,7 @@ class Scene {
         this.wheel.position.set(150.5,.5,this._engine.entities["ferris wheel"].getWorldPosition().z) 
 
  */
+
         
         for (let index = 0; index < this.animationsEntities.length; index++) {
             this.animationsEntities[index].playAnimation(this.animationsEntities[index].actions[0])

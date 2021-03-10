@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniJSON;
+using UnityEngine;
 
 namespace UniGLTF
 {
@@ -108,6 +109,7 @@ namespace UniGLTF
             f.KeyValue(() => material);
             if (targets != null && targets.Count > 0)
             {
+               
                 f.Key("targets"); f.GLTFValue(targets);
             }
             if (extensions.KHR_draco_mesh_compression!=null)
