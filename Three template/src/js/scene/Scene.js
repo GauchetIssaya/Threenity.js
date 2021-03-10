@@ -22,6 +22,7 @@ import AnimationCloner from '../utils/AnimationCloner';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
 import DebugRenderer from "../utils/CannonDebugRenderer"
+import { Vector3 } from 'three/build/three.module';
 
 class Scene {
     constructor(canvas, models, textures) {
@@ -274,8 +275,11 @@ class Scene {
         for (var i = 0; i < this._world.bodies.length; i++) {
             if (this._world.bodies[i].object != null) {
                 this._world.bodies[i].object.updateMatrixWorld(true);
+
                 let parent = this._world.bodies[i].object.parent;
                 this._scene.attach(this._world.bodies[i].object);
+
+                
                 this._world.bodies[i].object.position.copy(
                     this._world.bodies[i].position
                 );

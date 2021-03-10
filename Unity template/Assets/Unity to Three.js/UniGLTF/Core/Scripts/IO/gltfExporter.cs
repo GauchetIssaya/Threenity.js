@@ -331,7 +331,7 @@ namespace UniGLTF
                 if (rb.TryGetComponent(out BoxCollider bc))
                 {
                     collider = "box";
-                    center = bc.bounds.center;
+                    center = bc.center;
                     extents = bc.bounds.extents;
                     
                 }
@@ -339,7 +339,7 @@ namespace UniGLTF
                 if (rb.TryGetComponent(out CapsuleCollider cc))
                 {
                     collider = "box";
-                    center = cc.bounds.center;
+                    center = cc.center;
                     extents = cc.bounds.extents;
                 }
                 
@@ -348,7 +348,7 @@ namespace UniGLTF
                 else if (rb.TryGetComponent(out SphereCollider sc))
                 {
                     collider = "sphere";
-                    center = sc.bounds.center;
+                    center = sc.center;
                     
                     extents = new Vector3(sc.radius,sc.radius,sc.radius);
                 }
@@ -417,9 +417,7 @@ namespace UniGLTF
                 foreach (AnimationClip clip in Animationclips)
                 {
 
-                    if (clip.humanMotion)
-                    {
-                    }
+                    Debug.Log(clip.name);
 
 
                
@@ -543,8 +541,6 @@ namespace UniGLTF
             {
                 node.mesh = meshes.IndexOf(meshFilter.sharedMesh);
                 node.material = materials.IndexOf(x.GetComponent<Renderer>().sharedMaterials[0]);
-                Debug.Log(node.material);
-
             }
 
             var skinnredMeshRenderer = x.GetComponent<SkinnedMeshRenderer>();

@@ -34,31 +34,54 @@ public class ExporterWindow : EditorWindow
         GetWindow<ExporterWindow>("Exporter " + version);
     }
 
-    private new string name;
+    private static string name;
+    private string bru;
 
     bool DracoCompress;
 
     bool CreateFile;
 
+
+
+    private void OnValidate()
+    {
+        Debug.Log(("pass"));
+        projectPath = EditorPrefs.GetString("projectPath");
+        modelPath = EditorPrefs.GetString("modelPath");
+        texturePath = EditorPrefs.GetString("texturePath");
+        projectName = EditorPrefs.GetString("projectName");
+        isThreenity = EditorPrefs.GetBool("isThreenity");    }
+
     void OnGUI()
     {
+        
         m_Logo = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/Unity to Three.js/MISC/logo.png", typeof(Texture2D));
         GUILayout.Label(m_Logo);
         GUILayout.Label("Unity to GLTF : ", EditorStyles.largeLabel);
         GUILayout.Space(30);
         scene = EditorGUILayout.ObjectField("Scene container", scene, typeof(GameObject), true) as GameObject;
-    
 
-        
-        if (GUILayout.Button("Export Folder : " + originalpath))
+
+
+        if (GUILayout.Button("Project: " + projectName))
         {
-            GetPathFolder();
+            GetProjectPath();
         }
-        
-        GUILayout.Label("Name : ", EditorStyles.largeLabel);
-        name = GUILayout.TextField(name);
 
-  
+        CreateFile = GUILayout.Toggle(CreateFile, "Create File");
+
+        if (CreateFile)
+        {
+            GUILayout.Label("Name : ", EditorStyles.largeLabel);
+            name = scene.name;
+            name = GUILayout.TextField(name);
+            modelPath = projectPath + @"/models/" + name + ".glb";
+        }
+
+        else
+        {
+            name = "Level";
+        }
 
         exportAnimation = GUILayout.Toggle(exportAnimation, "Export Animations");
         exportActive = GUILayout.Toggle(exportActive, "Export Inactive Objects");
@@ -66,11 +89,8 @@ public class ExporterWindow : EditorWindow
 
         if (GUILayout.Button("Export ", GUILayout.Height(50)))
         {
-            if (name == String.Empty)
-            {
-                name = scene.name;
-            }
 
+            Debug.Log(name);
             if (isThreenity)
             {
                 CleanFolder();
@@ -132,7 +152,7 @@ public class ExporterWindow : EditorWindow
 
                             if (!texturesNames.Contains(material.mainTexture.name))
                             {
-                                var filename = originalTexturePath + "/" + properties.textureAccessor + ".png";
+                                var filename = texturePath + "/" + properties.textureAccessor + ".png";
                                 texturesNames.Add(material.mainTexture.name);
 
                                 RenderTexture renderTex = RenderTexture.GetTemporary(
@@ -184,15 +204,10 @@ public class ExporterWindow : EditorWindow
         var bytes = gltf.ToGlbBytes();
 
 
-        if (CreateFile)
-        {
-            path += "/" + name + ".glb";
-        }
-
-        Debug.Log("Exported to : " + path);
+        Debug.Log("Exported to : " + modelPath);
 
 
-        File.WriteAllBytes(path, bytes);
+        File.WriteAllBytes(modelPath, bytes);
 
         if (DracoCompress)
             Compress();
@@ -204,7 +219,7 @@ public class ExporterWindow : EditorWindow
 
     private void CleanFolder()
     {
-        DirectoryInfo di = new DirectoryInfo(originalTexturePath);
+        DirectoryInfo di = new DirectoryInfo(texturePath);
 
         foreach (FileInfo file in di.GetFiles())
         {
@@ -281,7 +296,7 @@ public class ExporterWindow : EditorWindow
         Process process;
         string strCmdText;
 
-        string[] newString = path.Split('.');
+        string[] newString = modelPath.Split('.');
         string newPath = newString[0];
         string extension;
 
@@ -290,7 +305,7 @@ public class ExporterWindow : EditorWindow
         {
             newPath += "(Draco)";
             extension = ".gltf";
-            strCmdText = "/C gltf-pipeline -i " + path + " -o  " + newPath + extension + " -d";
+            strCmdText = "/C gltf-pipeline -i " + modelPath + " -o  " + newPath + extension + " -d";
 
             process = Process.Start("cmd.exe", strCmdText);
             process.WaitForExit();
@@ -304,37 +319,54 @@ public class ExporterWindow : EditorWindow
     }
 
     private static string[] files;
-    private static string path = originalpath;
 
-    private static string pathTextures;
-    //public 
-
-
-    private static string originalpath;
-    private static string originalTexturePath;
+    
+    
 
 
     private static bool isThreenity;
-    private static void GetPathFolder()
+
+    private static string tempPath;
+
+    
+    private static string projectPath;
+    private static string projectName;
+
+    private static string modelPath;
+    private static string texturePath;
+
+
+    private static void GetProjectPath()
     {
-        path = EditorUtility.OpenFolderPanel("Export Path", "", "");
-        if (Directory.Exists(path + @"\models") && Directory.Exists(path + @"\modelTextures"))
+        tempPath = EditorUtility.OpenFolderPanel("Export Path", "", "");
+
+
+        if (Directory.Exists(tempPath + @"\models") && Directory.Exists(tempPath + @"\modelTextures"))
         {
-            originalpath = path + @"/models/Level.glb";
-            originalTexturePath = path + @"/modelTextures";
-            path =  path + @"/models/Level.glb";
-            Debug.Log("Threenity detected");
+
             isThreenity = true;
 
-        }
+            projectPath = tempPath;
 
-        else
-        {
-            Debug.LogError("Threenity not detected!");
-            isThreenity = false;
+            projectName = Directory.GetParent(Directory.GetParent(projectPath).ToString()).ToString();
+            projectName = projectName.Substring(projectName.LastIndexOf(@"\") + 1);
+
+            modelPath = projectPath + @"/models/" + name + ".glb";
+            texturePath = projectPath + @"/modelTextures";
+
+            Debug.Log(projectName + " project detected");
+
+            EditorPrefs.SetString("projectPath", projectPath);
+            EditorPrefs.SetString("modelPath", modelPath);
+            EditorPrefs.SetString("texturePath", texturePath);
+            EditorPrefs.SetString("projectName", projectName);
+            EditorPrefs.SetBool("isThreenity", isThreenity);
+
+            Debug.Log(EditorPrefs.GetString("projectPath"));
+
         }
-   
     }
+
 
 
 
@@ -345,8 +377,6 @@ public class ExporterWindow : EditorWindow
     private static AnimationConverter.PrefabPair pair;
     static string path2 = "Assets/Safe";
     private static GameObject newPrefab;
-    public GameObject goToConvert;
-    public string toConvertPath;
 
     public AnimationConverter.PrefabPair GetPrefabPair(GameObject toPrefab)
     {
@@ -496,13 +526,13 @@ public class ExporterWindow : EditorWindow
     private void Cleanup()
     {
         DestroyImmediate(go);
-        path = originalpath;
+  
 
         if (converted)
         {
             foreach (var path in prefabPaths)
             {
-                var toConvert = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
+                var toConvert = AssetDatabase.LoadAssetAtPath(modelPath, typeof(GameObject)) as GameObject;
               //  Debug.Log("newPrefab : " + newPrefab + " toConvert : " + toConvert);
                 foreach (var created in createdPaths)
                 {

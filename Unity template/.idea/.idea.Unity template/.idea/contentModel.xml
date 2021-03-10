@@ -25,10 +25,7 @@
           <e p="AnimationProperties.cs" t="Include" />
           <e p="CustomProperties.cs" t="Include" />
           <e p="Editor" t="Include">
-            <e p="Bru.cs" t="Include" />
-            <e p="BruEditor.cs" t="Include" />
             <e p="ExporterWindow.cs" t="Include" />
-            <e p="NewBehaviourScript.cs" t="Include" />
             <e p="PresetImportPerFolder.cs" t="Include" />
           </e>
           <e p="UniGLTF" t="Include">

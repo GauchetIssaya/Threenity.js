@@ -60,10 +60,7 @@
   <ItemGroup>
      <Compile Include="Assets\Unity to Three.js\AnimationConverter\Scripts\Editor\AnimationConverterLogWindow.cs" />
      <Compile Include="Assets\Unity to Three.js\AnimationConverter\Scripts\Editor\AnimationConverterWindow.cs" />
-     <Compile Include="Assets\Unity to Three.js\Editor\Bru.cs" />
-     <Compile Include="Assets\Unity to Three.js\Editor\BruEditor.cs" />
      <Compile Include="Assets\Unity to Three.js\Editor\ExporterWindow.cs" />
-     <Compile Include="Assets\Unity to Three.js\Editor\NewBehaviourScript.cs" />
      <Compile Include="Assets\Unity to Three.js\Editor\PresetImportPerFolder.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Editor\gltfAssetPostprocessor.cs" />
      <Compile Include="Assets\Unity to Three.js\UniGLTF\Core\Scripts\IO\Editor\ImporterMenu.cs" />

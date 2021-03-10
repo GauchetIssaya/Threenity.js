@@ -37,7 +37,7 @@ export default class Threenity {
                 child.name = child.node.name;
                 this.entities[child.name] = child;
                 if (child.node.hasOwnProperty("components")) {
-                    child.components = []; //child.node.components;
+                    child.components = []; 
 
                     let box, shape;
                     let size = new Vector3();
@@ -96,7 +96,6 @@ export default class Threenity {
                     });
                 }
 
-                //  console.log(child)
             }
         });
         this.setupMainScene();
@@ -116,7 +115,6 @@ export default class Threenity {
     }
 
     applyMaterial(child){
-     //   console.log(this.model.parser)
         child.material = this.model.parser.materials[child.node.material]  
     }
 
@@ -211,8 +209,8 @@ export default class Threenity {
         // Body copies mesh //
         child.body.addShape(shape);
         child.body.quaternion.copy(transform.quaternion);
-        child.body.position.copy(transform.position);
-
+        child.body.position.copy((new Vector3().copy(transform.position).add(component.center)));
+        console.log(child)
         // Push to system //
         child.body.object = child;
         this.bodies.push(child.body);

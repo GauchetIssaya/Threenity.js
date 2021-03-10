@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEditor.Presets;
+using UnityEngine;
 
 public class PresetImportPerFolder : AssetPostprocessor
 {
     void OnPreprocessAsset()
     {
+
         // Make sure we are applying presets the first time an asset is imported.
       
             

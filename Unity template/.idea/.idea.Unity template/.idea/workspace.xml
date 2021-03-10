@@ -33,7 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/PresetImportPerFolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/Editor/ModelImportManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" root0="FORCE_HIGHLIGHTING" />
@@ -61,14 +61,15 @@
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/Editor/ModelImportManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFMesh.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" />
-        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/PresetImportPerFolder.cs" />
         <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
       </list>
     </option>
   </component>
@@ -115,7 +116,7 @@
       <workItem from="1614698440551" duration="8252000" />
       <workItem from="1614815496810" duration="477000" />
       <workItem from="1614868012544" duration="15394000" />
-      <workItem from="1615370052306" duration="6740000" />
+      <workItem from="1615370052306" duration="17421000" />
     </task>
     <servers />
   </component>
