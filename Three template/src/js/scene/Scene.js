@@ -21,18 +21,19 @@ import AnimationCloner from '../utils/AnimationCloner';
 
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
-import DebugRenderer from "../utils/CannonDebugRenderer"
+//import DebugRenderer from "../utils/CannonDebugRenderer"
 import { Vector3 } from 'three/build/three.module';
 
 class Scene {
-    constructor(canvas, models, textures) {
-        const gui = new GUI();
+    constructor(canvas, models, textures,gltfLoader) {
+       // const gui = new GUI();
      
-        let camera = gui.addFolder('camera');
+       // let camera = gui.addFolder('camera');
 
         this.vsdkParameters = VSDK.getParameters();
         this._canvas = canvas;
 
+        this.gltfLoader = gltfLoader;
         this.playAnimation = false;
 
         this.isEngineReady = false;
@@ -47,7 +48,7 @@ class Scene {
         this._clock = new THREE.Clock();
 
         this._setupRenderer();
-        this._setupStats();
+        //this._setupStats();
 
         this._setupThreeScene();
         this._setupCannonWorld();
@@ -184,10 +185,10 @@ class Scene {
         this._world.gravity.set(0, -9.8, 0);
         this._world.solver.iterations = 10;
         this._world.broadphase = new CANNON.NaiveBroadphase();
-        this.DebugRenderer = new THREE.CannonDebugRenderer(
+/*         this.DebugRenderer = new THREE.CannonDebugRenderer(
             this._scene,
             this._world
-        );     }
+);     */} 
 
     _createEngine() {
 
@@ -243,7 +244,7 @@ class Scene {
     }
 
     tick() {
-        this.stats.begin();
+      //  this.stats.begin();
 
         this.delta = this._clock.getDelta();
         this.elapsedTime = this._clock.getElapsedTime();
@@ -262,9 +263,9 @@ class Scene {
         }
 
         this.updatePhysics();
-        this.DebugRenderer.update();
+     //   this.DebugRenderer.update();
         this._renderer.render(this._scene, this._camera);
-        this.stats.end();
+       // this.stats.end();
 
     }
 

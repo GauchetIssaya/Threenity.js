@@ -7,7 +7,7 @@ let managerComponent = new ManagerComponent();
 
 VSDK.onRequestInitGame((callback) => {
     loadingComponent.loadAssets().then(() => {
-        managerComponent.setup(loadingComponent.getModels(), loadingComponent.getTextures());
+        managerComponent.setup(loadingComponent.getModels(), loadingComponent.getTextures(),loadingComponent.getGLTFLoader());
     })
     callback();
 });

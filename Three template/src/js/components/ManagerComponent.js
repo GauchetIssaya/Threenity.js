@@ -5,7 +5,8 @@ class ManagerComponent {
         this.canvas = document.querySelector('.canvas');
     }
     
-    setup(models, textures) {
+    setup(models, textures,gltfLoader) {
+        this.gltfLoader = gltfLoader;
         this.renameAssets(models,textures);
         this._setupThree(models, textures);
         this.resize();
@@ -15,7 +16,7 @@ class ManagerComponent {
  
 
     _setupThree(models, textures) {
-        this.threeScene = new Scene(this.canvas, models, textures);
+        this.threeScene = new Scene(this.canvas, models, textures, this.gltfLoader);
     }
 
     _setupEventListeners() {

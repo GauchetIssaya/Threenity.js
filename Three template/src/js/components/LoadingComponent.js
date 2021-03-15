@@ -22,6 +22,7 @@ class LoadingComponent {
         this.importAll(require.context('../../assets/images/', true,/\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i));
 
         for (const model in MODELS) {
+
             let promise = new Promise((resolve, reject) => {
             this.gltfLoader.load(MODELS[model].file, resolve)
             this.models[model] = {}
@@ -47,6 +48,10 @@ class LoadingComponent {
         }
         return Promise.all(this._promises); 
         
+    }
+
+    getGLTFLoader(){
+        return this.gltfLoader;
     }
 
     getModels() {

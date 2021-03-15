@@ -1,10 +1,13 @@
 import * as THREE from "three";
 import * as CANNON from "cannon";
+
 import {  PerspectiveCamera, Quaternion, Vector3 } from "three";
 import AnimationComponent from "../components/AnimationComponent";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
 
 export default class Threenity {
-    constructor(gltf, scene, world, canvas, textures) {
+    constructor(gltf,scene, world, canvas, textures) {
         this.model = gltf;
         this.modelScene = gltf.scene;
         this.scene = scene;
@@ -18,12 +21,14 @@ export default class Threenity {
         this.animators = [];
         this.clips = [];
         this.once = false;
+
         this._setupComponents();
     }
 
    
     _setupComponents() {
 
+  
         this.modelScene.traverse((child) => {
             let gameObjectName = child.userData.name;
             let node = this.model.parser.json.nodes.find((element) => {
@@ -103,7 +108,7 @@ export default class Threenity {
 
     applyTexture(component, child) {
          
-        child.material = child.material.clone();
+         child.material = child.material.clone();
         let texture = this.textures[component.textureAccessor];
         texture.encoding = THREE.sRGBEncoding;
         child.material.map = texture;
@@ -111,10 +116,12 @@ export default class Threenity {
         child.material.map.wrapS = THREE.RepeatWrapping;
         child.material.map.wrapT = THREE.RepeatWrapping;
         child.material.map.repeat = component.textureRepeat;
-        child.material.map.offset = component.textureOffset; 
+        child.material.map.offset = component.textureOffset;  
     }
 
+
     applyMaterial(child){
+        
         child.material = this.model.parser.materials[child.node.material]  
     }
 
@@ -209,8 +216,10 @@ export default class Threenity {
         // Body copies mesh //
         child.body.addShape(shape);
         child.body.quaternion.copy(transform.quaternion);
-        child.body.position.copy((new Vector3().copy(transform.position).add(component.center)));
-        console.log(child)
+        child.body.position.copy(transform.position);
+
+        //Offset
+        //        child.body.position.copy((new Vector3().copy(transform.position).add(component.center)));
         // Push to system //
         child.body.object = child;
         this.bodies.push(child.body);
