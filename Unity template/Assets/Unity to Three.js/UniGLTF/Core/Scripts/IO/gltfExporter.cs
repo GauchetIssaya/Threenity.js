@@ -302,6 +302,11 @@ namespace UniGLTF
             public int isKinematic { get; set; }
             
             public string collider { get; set; }
+            
+            public List<GLTFCollider> colliders { get; set; }
+
+            
+            
             public Vector3 extents { get; set; }
             public Vector3 center { get; set; }
             
@@ -327,12 +332,24 @@ namespace UniGLTF
                     isKinematic = 1;
                     mass = rb.mass;
                 }
-                
+
+
+   
+                 // foreach (var colli in rb.GetComponents<Collider>())
+                 // {
+                 //     colliders.Add(new GLTFCollider(colli));
+                 // }
+                 
+                 
                 if (rb.TryGetComponent(out BoxCollider bc))
                 {
+                    
+              
+
+
                     collider = "box";
                     center = bc.center;
-                    extents = bc.bounds.extents;
+                    extents = bc.size;
                     
                 }
                 
@@ -352,15 +369,82 @@ namespace UniGLTF
                     
                     extents = new Vector3(sc.radius,sc.radius,sc.radius);
                 }
+                
+                
             }
         }
 
-         public class ComponentContainer
+         
+          
+          public class GLTFCollider 
+        {
+            
+            public string name { get; set; }
+            public string collider { get; set; }
+            
+            public List<int> colliders { get; set; }
+
+            
+            
+            public Vector3 extents { get; set; }
+            public Vector3 center { get; set; }
+            
+            
+            public GLTFCollider(Collider coll)
+            { 
+                // or set properties in default constructor to generate sample data
+                name = "Collider";
+
+
+                if (coll.GetType().ToString() == "UnityEngine.BoxCollider")
+                {
+                    var boxCollider = coll.GetComponent<BoxCollider>();
+                    collider = "box";
+                    center = boxCollider.center;
+                    extents = boxCollider.size;
+                    Object.DestroyImmediate(boxCollider);
+
+                    Debug.Log(extents);
+                }
+
+                if (coll.GetType().ToString() == "UnityEngine.SphereCollider")
+                {
+                    var sphereCollider = coll.GetComponent<SphereCollider>();
+                    collider = "sphere";
+                    center = sphereCollider.center;
+                    extents = new Vector3(sphereCollider.radius,sphereCollider.radius,sphereCollider.radius);
+                    Object.DestroyImmediate(sphereCollider);
+                }
+                
+                
+
+                
+                if (coll.GetType().ToString() == "UnityEngine.CapsuleCollider")
+                {
+                    Debug.LogWarning("Cylinder not implemented");
+                    var capsuleCollider = coll.GetComponent<CapsuleCollider>();
+                    collider = "capsule";
+                    center = capsuleCollider.center;
+                    extents = capsuleCollider.bounds.extents;
+                    Object.DestroyImmediate(capsuleCollider);
+
+                }
+                
+                
+         
+                
+            }
+        }
+
+
+          public class ComponentContainer
          {
              public List<GLTFTexture> TextureProperties { get; set; }
              public List<GLTFAnimation> AnimationProperties { get; set; }
 
              public List<GLTFBody> Rigidbodies { get; set; }
+             public List<GLTFCollider> Colliders { get; set; }
+
              public List<GLTFLight> Lights { get; set; }
              public List<GLTFCamera> Cameras { get; set; }
 
@@ -369,112 +453,134 @@ namespace UniGLTF
                  TextureProperties = new List<GLTFTexture>();
                  AnimationProperties = new List<GLTFAnimation>();
                  Rigidbodies = new List<GLTFBody>();
+                 Colliders = new List<GLTFCollider>();
                  Lights = new List<GLTFLight>();
                  Cameras = new List<GLTFCamera>();
              }
          }
 
          public List<float> AnimationID = new List<float>();
+
          public ComponentContainer GetComponents(GameObject go)
-        {
+         {
 
-            ComponentContainer componentContainer = new ComponentContainer();
-            
-            CustomProperties.TextureProperties[] textureProperties;
-            
-            textureProperties = go.GetComponents<CustomProperties.TextureProperties>();
+             ComponentContainer componentContainer = new ComponentContainer();
 
-            
-            if (textureProperties.Length > 0)
-            {
+             CustomProperties.TextureProperties[] textureProperties;
 
-                foreach (var texture in textureProperties)
-                {
-                    var text = new GLTFTexture(texture);
-                    componentContainer.TextureProperties.Add(text);
-                }
-
-            }
-            /////Animation shit
-            
-            var Animationclips = new List<AnimationClip>();
-            var animato = go.GetComponent<Animator>();
-            var animatio = go.GetComponent<Animation>();
-            if (animato != null)
-            {
-                Animationclips = AnimationExporter.GetAnimationClips(animato);
-            }
-            if (animatio != null)
-            {
-                
-              
-                Animationclips = AnimationExporter.GetAnimationClips(animatio);
-            }
-
-            if (Animationclips.Any())
-            {
-
-                foreach (AnimationClip clip in Animationclips)
-                {
-
-                    Debug.Log(clip.name);
+             textureProperties = go.GetComponents<CustomProperties.TextureProperties>();
 
 
-               
-                        //Assign animation
-                        var properties = go.AddComponent<CustomProperties.AnimationProperties>();
-                        Debug.Log("Remember to turn off when not exporting anims");
-                        properties.animationAccessor = clip.name;
-                      
-                    
-                }
+             if (textureProperties.Length > 0)
+             {
 
-                CustomProperties.AnimationProperties[] animationProperties;
-                animationProperties = go.GetComponents<CustomProperties.AnimationProperties>();
+                 foreach (var texture in textureProperties)
+                 {
+                     var text = new GLTFTexture(texture);
+                     componentContainer.TextureProperties.Add(text);
+                 }
+
+             }
+             /////Animation shit
+
+             var Animationclips = new List<AnimationClip>();
+             var animato = go.GetComponent<Animator>();
+             var animatio = go.GetComponent<Animation>();
+             if (animato != null)
+             {
+                 Animationclips = AnimationExporter.GetAnimationClips(animato);
+             }
+
+             if (animatio != null)
+             {
+
+
+                 Animationclips = AnimationExporter.GetAnimationClips(animatio);
+             }
+
+             if (Animationclips.Any())
+             {
+
+                 foreach (AnimationClip clip in Animationclips)
+                 {
+
+                     Debug.Log(clip.name);
 
 
 
-                if (animationProperties.Length > 0)
-                {
-                    foreach (var animation in animationProperties)
-                    {
-                        var anim = new GLTFAnimation(animation);
-                        componentContainer.AnimationProperties.Add(anim);
+                     //Assign animation
+                     var properties = go.AddComponent<CustomProperties.AnimationProperties>();
+                     Debug.Log("Remember to turn off when not exporting anims");
+                     properties.animationAccessor = clip.name;
 
-                    }
 
-                }
+                 }
 
+                 CustomProperties.AnimationProperties[] animationProperties;
+                 animationProperties = go.GetComponents<CustomProperties.AnimationProperties>();
+
+
+
+                 if (animationProperties.Length > 0)
+                 {
+                     foreach (var animation in animationProperties)
+                     {
+                         var anim = new GLTFAnimation(animation);
+                         componentContainer.AnimationProperties.Add(anim);
+
+                     }
+
+                 }
+
+
+
+             }
+
+
+
+
+             Rigidbody[] rigidBodies;
+
+             rigidBodies = go.GetComponents<Rigidbody>();
+
+             if (rigidBodies.Length > 0)
+             {
+
+                 foreach (var body in rigidBodies)
+                 {
+                     if (body.TryGetComponent(out Collider collider))
+                     {
+                         //Debug.Log(collider.GetType());
+                         if (collider.GetType() != typeof(MeshCollider))
+                         {
+                             var rigid = new GLTFBody(body);
+                             componentContainer.Rigidbodies.Add(rigid);
+                         }
+                     }
+                 }
+
+             }
+
+
+             Collider[] colliders;
+
+             colliders = go.GetComponents<Collider>();
+           // Debug.Log(go.name + "  " + colliders.Length);
+             if (colliders.Length > 0)
+             {
+                 foreach (var collider in colliders)
+                 {
+
+                     var colli = new GLTFCollider(collider);
+                     componentContainer.Colliders.Add(colli);
+                     
+
+                 }
+
+             }
          
 
-            }
-
-
-
-
-            Rigidbody[] rigidBodies;
-            
-            rigidBodies = go.GetComponents<Rigidbody>();
-
-            if (rigidBodies.Length > 0)
-            {
-
-                foreach (var body in rigidBodies)
-                {
-                    if (body.TryGetComponent(out Collider collider))
-                    {
-                        //Debug.Log(collider.GetType());
-                        if (collider.GetType() != typeof(MeshCollider))
-                        {
-                            var rigid = new GLTFBody(body);
-                            componentContainer.Rigidbodies.Add(rigid);
-                        }
-                    }
-                }
-  
-            }
-            
-            Light[] lights;
+         Light[] lights;
             
             lights = go.GetComponents<Light>();
 

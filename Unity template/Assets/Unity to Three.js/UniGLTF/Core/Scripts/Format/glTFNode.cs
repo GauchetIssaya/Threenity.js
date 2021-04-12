@@ -82,7 +82,9 @@ namespace UniGLTF
                     f.KeyValue(() => extras);
                 }
             }
-            if (components.TextureProperties != null || components.AnimationProperties != null || components.Rigidbodies != null ||components.Lights != null ||components.Cameras != null  )f.KeyValue(() => components);
+            Debug.Log(components.Colliders.Count);
+            if (components.TextureProperties != null || components.AnimationProperties != null || components.Rigidbodies != null || components.Colliders != null || components.Lights != null ||components.Cameras != null  )
+                f.KeyValue(() => components);
        
             
             

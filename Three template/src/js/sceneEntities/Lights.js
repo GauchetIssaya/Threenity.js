@@ -5,7 +5,6 @@ export default class Lights{
         this.params = sdkParameters;
         this.lights = lights;
         this.lightHelpers = [];
-
       //  this._setupHelpers();
     }
 
@@ -25,17 +24,20 @@ export default class Lights{
                     this.lightHelpers.push(spotLightHelper);
                 break;
             }
-        });
-    }
 
-    addToScene(scene) {
-        this.lights.forEach(light => {
+            
             scene.add(light);
+
         });
+
+     
         this.lightHelpers.forEach(lightHelper => {
             scene.add(lightHelper);
         });
+
+
     }
+
 
     update(delta) {
     }

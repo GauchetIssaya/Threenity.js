@@ -1,35 +1,27 @@
 //utils
 //vendors
-import * as THREE from 'three';
-import * as CANNON from 'cannon';
+import * as THREE from "three";
+import * as CANNON from "cannon";
 
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+import Stats from "three/examples/jsm/libs/stats.module.js";
+import { GUI } from "three/examples/jsm/libs/dat.gui.module.js";
 
 //components
-import AnimationComponent from '../components/AnimationComponent';
+import AnimationComponent from "../components/AnimationComponent";
 
 //sceneEntities
-import Lights from '../sceneEntities/Lights';
+import Lights from "../sceneEntities/Lights";
 
-import Threenity from '../components/Threenity';
-import ParticleSystemComponent from '../components/ParticleSystemComponent';
-import AnimationCloner from '../utils/AnimationCloner';
+import Threenity from "../components/Threenity";
+import ParticleSystemComponent from "../components/ParticleSystemComponent";
 
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
-
-//import DebugRenderer from "../utils/CannonDebugRenderer"
-import { Vector3 } from 'three/build/three.module';
+import DebugRenderer from "../utils/CannonDebugRenderer";
+import { Vector3 } from "three/build/three.module";
 
 class Scene {
-    constructor(canvas, models, textures,gltfLoader) {
-       // const gui = new GUI();
-     
-       // let camera = gui.addFolder('camera');
-
+    constructor(canvas, models, textures, gltfLoader) {
         this.vsdkParameters = VSDK.getParameters();
         this._canvas = canvas;
 
@@ -43,155 +35,147 @@ class Scene {
         this.animationsEntities = [];
         this.particleSystem = [];
 
-
         this.delta = 0;
         this._clock = new THREE.Clock();
 
         this._setupRenderer();
-        //this._setupStats();
+        this._setupStats();
 
         this._setupThreeScene();
+        this._scene.sceneEntities = [];
+        this._scene.toUpdate = [];
         this._setupCannonWorld();
+        this._scene.world = this._world;
 
         this._createEngine();
-        this._setupOrbitControls();
+        //  this._setupOrbitControls();
 
         this._setupParticleSystem();
 
-        // starting animation
-     // this.animationsEntities.riggedModel.playAnimation(this.animationsEntities.riggedModel.actionType.Run)
-     // this.animationsEntities.riggedModel.getCurrentAnim();
+        this._setup();
     }
 
+    _setup() {}
+    clickHandler(e) {}
 
-    clickHandler(e){
-        console.log("Click")
-        //this.element.style.pointerEvents = 'none'
-    }
+    clickMove(e) {}
 
-    clickMove(e){
-
-    }
-
-    clickHandlerUp(e){
-
-    }
+    clickHandlerUp(e) {}
 
     _setupStats() {
         this.stats = new Stats();
-        this.stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-        document.body.appendChild( this.stats.dom );
+        this.stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+        document.body.appendChild(this.stats.dom);
     }
 
     _setupRenderer() {
         this._renderer = new THREE.WebGLRenderer({
             canvas: this._canvas,
-            antialias: true
+            antialias: true,
         });
 
         this._renderer.outputEncoding = THREE.sRGBEncoding;
-
     }
 
     _setupThreeScene() {
         this._scene = new THREE.Scene();
     }
 
-
     _setupCamera() {
-        this._camera = new THREE.PerspectiveCamera(this.vsdkParameters.Camera.fov, this._canvas.width / this._canvas.height, 1, 1000);
+        this._camera = new THREE.PerspectiveCamera(
+            this.vsdkParameters.Camera.fov,
+            this._canvas.width / this._canvas.height,
+            1,
+            1000
+        );
 
         this._camera.position.x = this.vsdkParameters.Camera.xPos;
         this._camera.position.y = this.vsdkParameters.Camera.yPos;
         this._camera.position.z = this.vsdkParameters.Camera.zPos;
 
-        this._camera.lookAt(this.vsdkParameters.Camera.lookAtX, this.vsdkParameters.Camera.lookAtY, this.vsdkParameters.Camera.lookAtZ);
+        this._camera.lookAt(
+            this.vsdkParameters.Camera.lookAtX,
+            this.vsdkParameters.Camera.lookAtY,
+            this.vsdkParameters.Camera.lookAtZ
+        );
         return this._camera;
     }
 
     _setupOrbitControls() {
-        if(this.vsdkParameters.Debug) {
+        if (this.vsdkParameters.Debug) {
             this._controls = new OrbitControls(this._camera, this._canvas);
             this._controls.update();
         }
     }
 
     _setupParticleSystem() {
-        let particleSystemComponent = new ParticleSystemComponent(new THREE.Object3D(), this._textures.uvMap, 100, 1.2, 10, 10, 1, 2);
+        let particleSystemComponent = new ParticleSystemComponent(
+            new THREE.Object3D(),
+            this._textures.uvMap,
+            100,
+            1.2,
+            10,
+            10,
+            1,
+            2
+        );
         this.particleSystem.push(particleSystemComponent);
         this.particleSystem[0].addToScene(this._scene);
     }
 
     _createModels() {
-        for (let model in this.sceneEntities) {
-            if (!this.sceneEntities[model].is3dModel && !this.sceneEntities[model].fromUnity ) continue;
-            this.sceneEntities[model]?.build(this._models);
-            this.sceneEntities[model].addToScene(this._scene);
+        for (let model in this._scene.sceneEntities) {
+            if (
+                !this._scene.sceneEntities[model].is3dModel &&
+                !this._scene.sceneEntities[model].fromUnity
+            )
+                continue;
+            this._scene.sceneEntities[model]?.build(this._models);
+            this._scene.sceneEntities[model].addToScene(this._scene);
         }
     }
 
     _createModelsAnimations() {
-
-        
-        this.animationsEntities = this.animationsEntities.concat(this._engine.animators);
-        for (let model in this.sceneEntities) {
-            if (!this.sceneEntities[model].is3dModel) continue;
-            if(this.sceneEntities[model].isModelAnimated) {
-                if(this.sceneEntities[model].fromUnity){
-                    console.log(this.sceneEntities[model].model)
-                    this.animationsEntities[model] = new AnimationComponent(this.sceneEntities[model].model)
-                }
-
-                else{
-                this.animationsEntities[model] = new AnimationComponent(this.sceneEntities[model])
+        this.animationsEntities = this.animationsEntities.concat(
+            this._engine.animators
+        );
+        for (let model in this._scene.sceneEntities) {
+            if (!this._scene.sceneEntities[model].is3dModel) continue;
+            if (this._scene.sceneEntities[model].isModelAnimated) {
+                if (this._scene.sceneEntities[model].fromUnity) {
+                    this.animationsEntities[model] = new AnimationComponent(
+                        this._scene.sceneEntities[model].model
+                    );
+                } else {
+                    this.animationsEntities[model] = new AnimationComponent(
+                        this._scene.sceneEntities[model]
+                    );
                 }
             }
         }
-
-
-
     }
-    
+
     _createEntities() {
-
-        this.sceneEntities = {
-            lights: new Lights(this.vsdkParameters.LightsSettings, this._engine.lights),
-            // building: new Building(this.vsdkParameters.ModelExample, this.vsdkParameters.ModelExample.name, this._textures),
-            //riggedModel: new RiggedModel(this.vsdkParameters.RiggedModelExample, this.vsdkParameters.RiggedModelExample.name, this._textures),
-        };
-    
-        
-        for (let entity in this.sceneEntities) {
-            if (this.sceneEntities[entity].is3dModel) continue;
-            this.sceneEntities[entity].addToScene(this._scene);
-        } 
-
-       /*  this._engine.modelScene.children.forEach(children => {
-            if(children.name === "Interactive") {
-                 children.children.forEach(object => {
-                    console.log(object)
-                    this.sceneEntities[object.name] = new GameObject(object,true).copy(object);
-                }); 
-            } 
-        }); */
-
-
-
+        this._scene.sceneEntities["lights"] = new Lights(
+            this.vsdkParameters.LightsSettings,
+            this._engine.lights,
+            this._scene
+        );
     }
-    
+
     _setupCannonWorld() {
         this._world = new CANNON.World();
         this._world.bodies = [];
         this._world.gravity.set(0, -9.8, 0);
         this._world.solver.iterations = 10;
         this._world.broadphase = new CANNON.NaiveBroadphase();
-/*         this.DebugRenderer = new THREE.CannonDebugRenderer(
+        this.DebugRenderer = new THREE.CannonDebugRenderer(
             this._scene,
             this._world
-);     */} 
+        );
+    }
 
     _createEngine() {
-
         this._engine = new Threenity(
             this._models[this.vsdkParameters.MainScene.name],
             this._scene,
@@ -202,36 +186,21 @@ class Scene {
         this._createEntities();
         this._createModels();
         this._createModelsAnimations();
-        this._camera  = this._engine.camera ? this._engine.camera : this._setupCamera()
+        this._camera = this._engine.camera
+            ? this._engine.camera
+            : this._setupCamera();
     }
 
- 
-    
     _start() {
         this._isReady = true;
     }
 
     startGame() {
-
-        //Copy animation example
- 
-/*         console.log(this._engine.entities["ferris wheel"])
-        this.wheel = new AnimationCloner(this._engine.entities["ferris wheel"]).model;
-  
-
-        this.animationsEntities.push(this.wheel.components['Animations'].mixer)
-
-        this._scene.add(this.wheel)
-        this.wheel.position.set(150.5,.5,this._engine.entities["ferris wheel"].getWorldPosition().z) 
-
- */
-
-        
         for (let index = 0; index < this.animationsEntities.length; index++) {
-            this.animationsEntities[index].playAnimation(this.animationsEntities[index].actions[0])
-    
-        } 
-
+            this.animationsEntities[index].playAnimation(
+                this.animationsEntities[index].actions[0]
+            );
+        }
     }
 
     resize(width, height) {
@@ -244,29 +213,23 @@ class Scene {
     }
 
     tick() {
-      //  this.stats.begin();
+        this.stats.begin();
 
         this.delta = this._clock.getDelta();
         this.elapsedTime = this._clock.getElapsedTime();
 
-        for (let entity in this.sceneEntities) {
-            this.sceneEntities[entity].update(this.delta);
-        }   
-
-        for(let entity in this.animationsEntities) {
-           // console.log(entity)
-            this.animationsEntities[entity].update(this.delta)
+        for (let entity in this._scene.toUpdate) {
+            this._scene.toUpdate[entity].update(this.delta);
         }
 
-        for(let particleSystem in this.particleSystem) {
-        //    this.particleSystem[particleSystem].update(this.delta, this.sceneEntities.riggedModel.model.scene.position)
+        for (let entity in this.animationsEntities) {
+            this.animationsEntities[entity].update(this.delta);
         }
 
         this.updatePhysics();
-     //   this.DebugRenderer.update();
+        this.DebugRenderer.update();
         this._renderer.render(this._scene, this._camera);
-       // this.stats.end();
-
+        this.stats.end();
     }
 
     updatePhysics() {
@@ -277,17 +240,15 @@ class Scene {
             if (this._world.bodies[i].object != null) {
                 this._world.bodies[i].object.updateMatrixWorld(true);
 
-                let parent = this._world.bodies[i].object.parent;
-                this._scene.attach(this._world.bodies[i].object);
-
-                
                 this._world.bodies[i].object.position.copy(
-                    this._world.bodies[i].position
+                    this._world.bodies[i].object.parent.worldToLocal(
+                        new Vector3().copy(this._world.bodies[i].position)
+                    )
                 );
+
                 this._world.bodies[i].object.quaternion.copy(
                     this._world.bodies[i].quaternion
                 );
-                parent.attach(this._world.bodies[i].object);
             }
         }
     }
@@ -297,8 +258,6 @@ class Scene {
         this._textures = this._loader.getTextures();
         this._start();
     }
-
-
 }
 
 export default Scene;

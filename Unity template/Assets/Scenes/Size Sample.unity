@@ -132,8 +132,8 @@ GameObject:
   - component: {fileID: 79744970}
   - component: {fileID: 79744974}
   - component: {fileID: 79744973}
-  - component: {fileID: 79744972}
   - component: {fileID: 79744971}
+  - component: {fileID: 79744972}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -182,7 +182,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.99999994, y: 1, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &79744973
 MeshRenderer:
@@ -431,8 +431,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987266325}
-  m_LocalRotation: {x: 0.23855749, y: -0.22055848, z: 0.055730876, w: 0.9441072}
-  m_LocalPosition: {x: 6.762829, y: 7.83737, z: -10.179641}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.000000014901161, z: -0.0000000037252903,
+    w: 1}
+  m_LocalPosition: {x: 2.1185226, y: -1.8257246, z: -14.138052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1794667079}
@@ -530,7 +531,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!23 &1310236928
 MeshRenderer:
   m_ObjectHideFlags: 0

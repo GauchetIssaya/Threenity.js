@@ -420,7 +420,6 @@ namespace UniJSON
                     BeginMap();
                     
                     Key("name"); Value("Animations");
-//                    Debug.Log(animation.animationAccessor);
                     Key("animationAccessor"); Value(animation.animationAccessor);
                     EndMap();
                     
@@ -452,6 +451,24 @@ namespace UniJSON
                 }
                 
             }
+            
+            if(a.Colliders.Count > 0){
+                BeginMap();
+                Key("name"); Value("Colliders");
+
+                int index = 0;
+             
+                foreach (var collider in a.Colliders)
+                {
+                     Key("Collider : " + index); Value(collider);
+                    index++;
+                }
+                EndMap();
+
+            }
+                
+                
+            
             
             
              if(a.Lights != null){
@@ -499,10 +516,25 @@ namespace UniJSON
             
             EndList();
         }
-        
-        
-        
-        
+
+        public void Value(gltfExporter.GLTFCollider colli)
+        {
+             
+                BeginMap();
+                    
+                Key("name"); Value(colli.name +" : ");
+                Key("collider"); Value(colli.collider);
+                Key("center"); Value(colli.center);
+                Key("extents"); Value(colli.extents);
+
+                    
+                EndMap();
+             
+
+            
+        }
+
+
 
         // public void Value(gltfExporter.Contact x)
         // {

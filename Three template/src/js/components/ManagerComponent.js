@@ -34,7 +34,6 @@ class ManagerComponent {
     }
 
     createLevel() {
-        console.log("level Created")
     }
     
     start() {
@@ -78,6 +77,13 @@ class ManagerComponent {
         Object.keys(textures).forEach(key => {
           delete Object.assign(textures, {[(key.split('.').slice(0, -1).join('.')).substring(2)]: textures[key] })[key];
           });
+
+
+          Object.keys(models).forEach(key => {
+            delete Object.assign(models, {[(key.split('.').slice(0, -1).join('.')).substring(2)]: models[key] })[key];
+            });
+
+
     }
 
     

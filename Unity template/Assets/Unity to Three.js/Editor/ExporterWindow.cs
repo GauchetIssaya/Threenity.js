@@ -19,7 +19,7 @@ using Debug = UnityEngine.Debug;
 
 public class ExporterWindow : EditorWindow
 {
-    static float version = 0.7f;
+    static float version = 0.8f;
 
     public GameObject scene;
     private Texture2D m_Logo = null;
@@ -39,7 +39,7 @@ public class ExporterWindow : EditorWindow
 
     bool DracoCompress;
 
-    bool CreateFile;
+    static bool CreateFile;
 
 
 
@@ -363,6 +363,11 @@ public class ExporterWindow : EditorWindow
             EditorPrefs.SetBool("isThreenity", isThreenity);
 
             Debug.Log(EditorPrefs.GetString("projectPath"));
+
+        }
+
+        else if (CreateFile)
+        {
 
         }
     }

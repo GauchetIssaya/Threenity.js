@@ -1,13 +1,12 @@
 import * as THREE from "three";
 import * as CANNON from "cannon";
 
-import {  PerspectiveCamera, Quaternion, Vector3 } from "three";
+import { PerspectiveCamera, Quaternion, Vector3 } from "three";
 import AnimationComponent from "../components/AnimationComponent";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-
 export default class Threenity {
-    constructor(gltf,scene, world, canvas, textures) {
+    constructor(gltf, scene, world, canvas, textures) {
         this.model = gltf;
         this.modelScene = gltf.scene;
         this.scene = scene;
@@ -22,13 +21,11 @@ export default class Threenity {
         this.clips = [];
         this.once = false;
 
+        console.log(gltf);
         this._setupComponents();
     }
 
-   
     _setupComponents() {
-
-  
         this.modelScene.traverse((child) => {
             let gameObjectName = child.userData.name;
             let node = this.model.parser.json.nodes.find((element) => {
@@ -42,7 +39,7 @@ export default class Threenity {
                 child.name = child.node.name;
                 this.entities[child.name] = child;
                 if (child.node.hasOwnProperty("components")) {
-                    child.components = []; 
+                    child.components = [];
 
                     let box, shape;
                     let size = new Vector3();
@@ -57,14 +54,17 @@ export default class Threenity {
                     child.getWorldPosition(transform.position);
                     child.getWorldQuaternion(transform.quaternion);
 
-
-
-                    if(child.node.material >= 0){
+                    if (child.node.material >= 0) {
                         this.applyMaterial(child);
                     }
+
                     child.node.components.forEach((component) => {
                         child.components[component.name] = component;
 
+                        // delete component.name;
+                    });
+
+                    child.node.components.forEach((component) => {
                         switch (component.name) {
                             case "Texture":
                                 this.applyTexture(component, child);
@@ -100,15 +100,13 @@ export default class Threenity {
                         }
                     });
                 }
-
             }
         });
         this.setupMainScene();
     }
 
     applyTexture(component, child) {
-         
-         child.material = child.material.clone();
+        child.material = child.material.clone();
         let texture = this.textures[component.textureAccessor];
         texture.encoding = THREE.sRGBEncoding;
         child.material.map = texture;
@@ -116,13 +114,11 @@ export default class Threenity {
         child.material.map.wrapS = THREE.RepeatWrapping;
         child.material.map.wrapT = THREE.RepeatWrapping;
         child.material.map.repeat = component.textureRepeat;
-        child.material.map.offset = component.textureOffset;  
+        child.material.map.offset = component.textureOffset;
     }
 
-
-    applyMaterial(child){
-        
-        child.material = this.model.parser.materials[child.node.material]  
+    applyMaterial(child) {
+        child.material = this.model.parser.materials[child.node.material];
     }
 
     setupMainScene() {
@@ -192,6 +188,7 @@ export default class Threenity {
             child.light.intensity = 0;
         }
 
+        this.scene.add(child.light);
         child.light.position.copy(position);
         this.lights.push(child.light);
     }
@@ -201,30 +198,50 @@ export default class Threenity {
             mass: component.mass,
         });
 
-        // Collider shapes //
-        if (component.collider == "box") {
-            box = child.geometry.boundingBox;
-            box.getSize(size);
-            size.multiply(transform.scale);
+        let index = 0;
 
-            shape = new CANNON.Box(
-                new CANNON.Vec3(size.x / 2, size.y / 2, size.z / 2)
-            );
-        } else if (component.collider == "sphere") {
-            shape = new CANNON.Sphere(component.extents.z * transform.scale.x);
+        for (const [key, value] of Object.entries(
+            child.components["Colliders"]
+        )) {
+            if (key != "name") {
+                if (value.collider == "box") {
+                    size = new Vector3(1, 1, 1);
+
+                    size.multiply(transform.scale);
+                    size.multiply(value.extents);
+
+                    let thing = new CANNON.Vec3(
+                        size.x / 2,
+                        size.y / 2,
+                        size.z / 2
+                    );
+
+                    shape = new CANNON.Box(thing);
+                } else if (value.collider == "sphere") {
+                    shape = new CANNON.Sphere(
+                        value.extents.z * transform.scale.x
+                    );
+                }
+                // Body copies mesh //
+
+                let offset = new Vector3().copy(value.center).multiply(transform.scale)
+                child.body.shapeOffsets[index] = new CANNON.Vec3(
+                    offset.x,
+                    offset.y,
+                    offset.z
+                );
+                child.body.addShape(shape);
+
+                index++;
+            }
         }
-        // Body copies mesh //
-        child.body.addShape(shape);
+
         child.body.quaternion.copy(transform.quaternion);
         child.body.position.copy(transform.position);
 
-        //Offset
-        //        child.body.position.copy((new Vector3().copy(transform.position).add(component.center)));
         // Push to system //
         child.body.object = child;
-        this.bodies.push(child.body);
-        this.world.bodies.push(child.body);
-        this.world.add(child.body);
+        this.world.addBody(child.body);
     }
 
     getChildContains(index) {
@@ -276,7 +293,4 @@ export default class Threenity {
             }
         });
     }
-
-
-
 }

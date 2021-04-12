@@ -84,11 +84,11 @@
           "name": "MainScene",
           "value": {
               "name": {
-                "value": "level",
+                "value": "Level",
                 "type": "select",
                 "options": [
                   {
-                    "name": "level"
+                    "name": "Level"
                   }
                 ]
               },

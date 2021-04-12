@@ -29,7 +29,7 @@ module.exports = merge(common, {
     open: true,
     compress: true,
     hot: true,
-    port: 8081,
+    port: 8085,
     writeToDisk: true
   },
 
