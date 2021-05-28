@@ -1,3 +1,2 @@
 # Threenity.js
  
-Hello World
