@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0b570aab-4eaf-4c20-b374-f5ed71a2bd0b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Asset Exporter/Editor/AssetExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E90BEB44-6898-4ECF-B706-59AC067ECC5C/02/761c7382/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23A7799D-A2E9-41B8-8C6D-B790C607D655/92/91b4c68c/Object.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomPropeties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TexturePropeties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/MaterialExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/AnimationProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/TextureProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTF.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/Editor/ModelImportManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Editor/Tests/SchemaTests.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/AnimationExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFMesh.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Extensions/UnityExtensions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/CustomProperties.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/BruEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/PresetImportPerFolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFCamera.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFLight.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/ComponentContainer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFTexture.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFAnimation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/LookAtPoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/LookAtPointEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/LookAtPoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFCustomComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/Format/glTFNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Editor/ExporterWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/Core/Scripts/IO/gltfExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFBody.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/Components/GLTFCollider.cs" />
+        <option value="$PROJECT_DIR$/Assets/Unity to Three.js/UniGLTF/UniJSON/Scripts/Json/JsonFormatter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Asset Exporter/Editor/ExporterWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Asset Exporter/Editor/AssetExporter.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oCerf2wd64goXH2ryswOqCZj6A" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0b570aab-4eaf-4c20-b374-f5ed71a2bd0b" name="Default Changelist" comment="" />
+      <created>1612795200769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612795200769</updated>
+      <workItem from="1612795206011" duration="29809000" />
+      <workItem from="1612960521946" duration="4423000" />
+      <workItem from="1613657912708" duration="13456000" />
+      <workItem from="1614698440551" duration="8252000" />
+      <workItem from="1614815496810" duration="477000" />
+      <workItem from="1614868012544" duration="15394000" />
+      <workItem from="1615370052306" duration="18297000" />
+      <workItem from="1618245727742" duration="6727000" />
+      <workItem from="1620051150214" duration="5545000" />
+      <workItem from="1620662778331" duration="4513000" />
+      <workItem from="1621240500759" duration="4587000" />
+      <workItem from="1622040663031" duration="3013000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="714" y="379" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1622041712824">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="714" y="379" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622041712824" />
+    <state x="2536" y="240" key="run.anything.popup" timestamp="1620057384020">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1620057384020" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1614728177009" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1615380549139">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2536" y="173" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614873764539" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1615380549139" />
+  </component>
+</project>

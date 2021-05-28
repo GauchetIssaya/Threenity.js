@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Issaya\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Issaya\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Unity template.132724251.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Issaya\Desktop\Unity-to-Three.js\1.0\Unity template" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="DemoAssets" t="Include">
+          <e p="MobileCity" t="Include">
+            <e p="FreeCam.cs" t="Include" />
+            <e p="ReadMe.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Unity to Three.js" t="Include">
+          <e p="AnimationConverter" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="AnimationConverterLogWindow.cs" t="Include" />
+                <e p="AnimationConverterWindow.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="AnimationProperties.cs" t="Include" />
+          <e p="Components" t="Include">
+            <e p="ComponentContainer.cs" t="Include" />
+            <e p="glTFAnimation.cs" t="Include" />
+            <e p="GLTFBody.cs" t="Include" />
+            <e p="glTFCamera.cs" t="Include" />
+            <e p="GLTFCollider.cs" t="Include" />
+            <e p="GLTFCustomComponent.cs" t="Include" />
+            <e p="GLTFLight.cs" t="Include" />
+            <e p="glTFTexture.cs" t="Include" />
+            <e p="LookAtPoint.cs" t="Include" />
+            <e p="LookAtPointEditor.cs" t="Include" />
+            <e p="NewBehaviourScript.cs" t="Include" />
+          </e>
+          <e p="CustomProperties.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="ExporterWindow.cs" t="Include" />
+            <e p="PresetImportPerFolder.cs" t="Include" />
+          </e>
+          <e p="UniGLTF" t="Include">
+            <e p="Core" t="Include">
+              <e p="Editor" t="Include">
+                <e p="gltfAssetPostprocessor.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Extensions" t="Include">
+                  <e p="ArrayExtensions.cs" t="Include" />
+                  <e p="glTFExtensions.cs" t="Include" />
+                  <e p="JsonParserExtensions.cs" t="Include" />
+                  <e p="StringExtensions.cs" t="Include" />
+                  <e p="UnityExtensions.cs" t="Include" />
+                </e>
+                <e p="Format" t="Include">
+                  <e p="BytesBuffer.cs" t="Include" />
+                  <e p="ExtensionsAndExtras" t="Include">
+                    <e p="glTFCameraExtensions.cs" t="Include" />
+                    <e p="glTFExtensions.cs" t="Include" />
+                    <e p="glTFMesh.Primitives.extras.targetNames.cs" t="Include" />
+                    <e p="glTFNode.cs" t="Include" />
+                    <e p="KHR_draco_mesh_compression.cs" t="Include" />
+                    <e p="KHR_materials_unlit.cs" t="Include" />
+                  </e>
+                  <e p="glbTypes.cs" t="Include" />
+                  <e p="glEnum.cs" t="Include" />
+                  <e p="glTF.cs" t="Include" />
+                  <e p="glTFAnimation.cs" t="Include" />
+                  <e p="glTFAssets.cs" t="Include" />
+                  <e p="glTFBuffer.cs" t="Include" />
+                  <e p="glTFCamera.cs" t="Include" />
+                  <e p="glTFMaterial.cs" t="Include" />
+                  <e p="glTFMesh.cs" t="Include" />
+                  <e p="glTFNode.cs" t="Include" />
+                  <e p="glTFSkin.cs" t="Include" />
+                  <e p="glTFTexture.cs" t="Include" />
+                  <e p="JsonFormatter.cs" t="Include" />
+                  <e p="JsonSerializableBase.cs" t="Include" />
+                  <e p="MonoBehaviourComparator.cs" t="Include" />
+                </e>
+                <e p="IO" t="Include">
+                  <e p="AnimationCurveData.cs" t="Include" />
+                  <e p="AnimationExporter.cs" t="Include" />
+                  <e p="AnimationImporter.cs" t="Include" />
+                  <e p="AnimationKeyframeData.cs" t="Include" />
+                  <e p="BytesReader.cs" t="Include" />
+                  <e p="Editor" t="Include">
+                    <e p="ImporterMenu.cs" t="Include" />
+                    <e p="MaterialTests.cs" t="Include" />
+                    <e p="ModelImportManager.cs" t="Include" />
+                    <e p="UniGLTFTests.cs" t="Include" />
+                    <e p="UniGLTFVersionMenu.cs" t="Include" />
+                  </e>
+                  <e p="glbImporter.cs" t="Include" />
+                  <e p="gltfExporter.cs" t="Include" />
+                  <e p="gltfImporter.cs" t="Include" />
+                  <e p="ImporterContext.cs" t="Include" />
+                  <e p="IStorage.cs" t="Include" />
+                  <e p="MaterialExporter.cs" t="Include" />
+                  <e p="MaterialImporter.cs" t="Include" />
+                  <e p="MeshImporter.cs" t="Include" />
+                  <e p="MeshWithMaterials.cs" t="Include" />
+                  <e p="NodeImporter.cs" t="Include" />
+                  <e p="ShaderPropExporter" t="Include">
+                    <e p="PreShaderPropExporter.cs" t="Include" />
+                    <e p="ShaderProps.cs" t="Include" />
+                  </e>
+                  <e p="ShaderStore.cs" t="Include" />
+                  <e p="StaticMeshIntegrator.cs" t="Include" />
+                  <e p="TextureConverter.cs" t="Include" />
+                  <e p="TextureExportManager.cs" t="Include" />
+                  <e p="TextureIO.cs" t="Include" />
+                  <e p="TextureItem.cs" t="Include" />
+                  <e p="TextureLoader.cs" t="Include" />
+                  <e p="TextureSamplerUtil.cs" t="Include" />
+                  <e p="TriangleUtil.cs" t="Include" />
+                  <e p="UnityPath.cs" t="Include" />
+                  <e p="ZipArchiveStorage.cs" t="Include" />
+                </e>
+                <e p="PreExportShaderProps" t="Include">
+                  <e p="Standard.cs" t="Include" />
+                  <e p="UniGLTF_UniUnlit.cs" t="Include" />
+                  <e p="Unlit_Color.cs" t="Include" />
+                  <e p="Unlit_Texture.cs" t="Include" />
+                  <e p="Unlit_Transparent.cs" t="Include" />
+                  <e p="Unlit_Transparent_Cutout.cs" t="Include" />
+                </e>
+                <e p="UniGLTFException.cs" t="Include" />
+                <e p="UniGLTFVersion.cs" t="Include" />
+                <e p="UniGLTFVersion_partial.cs" t="Include" />
+              </e>
+            </e>
+            <e p="DepthFirstScheduler" t="Include">
+              <e p="Editor" t="Include">
+                <e p="DepthFirstScheduler.cs" t="Include" />
+              </e>
+              <e p="Functor.cs" t="Include" />
+              <e p="IEnumeratorExtensions.cs" t="Include" />
+              <e p="LockQueue.cs" t="Include" />
+              <e p="MainThreadDispatcher.cs" t="Include" />
+              <e p="MonitorQueue.cs" t="Include" />
+              <e p="Schedulable.cs" t="Include" />
+              <e p="Scheduler" t="Include">
+                <e p="CurrentThreadScheduler.cs" t="Include" />
+                <e p="StepScheduler.cs" t="Include" />
+                <e p="ThreadPoolScheduler.cs" t="Include" />
+                <e p="ThreadScheduler.cs" t="Include" />
+              </e>
+              <e p="Scheduler.cs" t="Include" />
+              <e p="TaskChain.cs" t="Include" />
+              <e p="Unit.cs" t="Include" />
+            </e>
+            <e p="UniHumanoid" t="Include">
+              <e p="PoseModifier" t="Include">
+                <e p="HandPose.cs" t="Include" />
+                <e p="HandRig.cs" t="Include" />
+                <e p="IPoseModifier.cs" t="Include" />
+              </e>
+              <e p="Scenes" t="Include">
+                <e p="HumanBuilderTest.cs" t="Include" />
+                <e p="RuntimeBvhLoader.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="AnimationClipUtility.cs" t="Include" />
+                <e p="AvatarDescription.cs" t="Include" />
+                <e p="BoneGizmoDrawer.cs" t="Include" />
+                <e p="BoneMapping.cs" t="Include" />
+                <e p="BvhBone.cs" t="Include" />
+                <e p="Editor" t="Include">
+                  <e p="BoneMappingEditor.cs" t="Include" />
+                  <e p="bvhAssetPostprocessor.cs" t="Include" />
+                  <e p="HumanPoseTransferEditor.cs" t="Include" />
+                  <e p="MuscleInspectorEditor.cs" t="Include" />
+                  <e p="Tests" t="Include">
+                    <e p="BvhLoaderTests.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Format" t="Include">
+                  <e p="Bvh.cs" t="Include" />
+                </e>
+                <e p="HumanPoseClip.cs" t="Include" />
+                <e p="HumanPoseTransfer.cs" t="Include" />
+                <e p="IBone.cs" t="Include" />
+                <e p="IO" t="Include">
+                  <e p="BvhAnimationClip.cs" t="Include" />
+                  <e p="BvhImporter.cs" t="Include" />
+                  <e p="Extensions" t="Include">
+                    <e p="BvhExtensions.cs" t="Include" />
+                    <e p="UnityExtensions.cs" t="Include" />
+                  </e>
+                  <e p="ImporterContext.cs" t="Include" />
+                </e>
+                <e p="MuscleDebug.cs" t="Include" />
+                <e p="MuscleInspector.cs" t="Include" />
+                <e p="Skeleton.cs" t="Include" />
+                <e p="SkeletonEstimator.cs" t="Include" />
+                <e p="SkeletonMeshUtility.cs" t="Include" />
+              </e>
+            </e>
+            <e p="UniJSON" t="Include">
+              <e p="Editor" t="Include">
+                <e p="Tests" t="Include">
+                  <e p="IWriteStreamTest.cs" t="Include" />
+                  <e p="JsonDiffTests.cs" t="Include" />
+                  <e p="JsonFormatterTest.cs" t="Include" />
+                  <e p="JsonParserTest.cs" t="Include" />
+                  <e p="MsgPack" t="Include">
+                    <e p="ArrayTest.cs" t="Include" />
+                    <e p="BooleanTest.cs" t="Include" />
+                    <e p="FloatTest.cs" t="Include" />
+                    <e p="IntTest.cs" t="Include" />
+                    <e p="MapTest.cs" t="Include" />
+                    <e p="RawTest.cs" t="Include" />
+                    <e p="StringTest.cs" t="Include" />
+                  </e>
+                  <e p="SchemaTests.cs" t="Include" />
+                  <e p="ValidatorTests.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="ActionDisposer.cs" t="Include" />
+                <e p="Extensions" t="Include">
+                  <e p="ArraySegmentExtensions.cs" t="Include" />
+                  <e p="ByteExtensions.cs" t="Include" />
+                  <e p="EnumExtensions.cs" t="Include" />
+                  <e p="ObjectExtensions.cs" t="Include" />
+                  <e p="StringExtensions.cs" t="Include" />
+                  <e p="TypeExtensions.cs" t="Include" />
+                </e>
+                <e p="FormatterExtensions.cs" t="Include" />
+                <e p="IFileSystemAccessor.cs" t="Include" />
+                <e p="IFormatter.cs" t="Include" />
+                <e p="IStore" t="Include">
+                  <e p="BytesStore.cs" t="Include" />
+                  <e p="ByteUnion.cs" t="Include" />
+                  <e p="IStore.cs" t="Include" />
+                  <e p="StreamStore.cs" t="Include" />
+                  <e p="StringBuilderStore.cs" t="Include" />
+                </e>
+                <e p="IValueNode.cs" t="Include" />
+                <e p="Json" t="Include">
+                  <e p="Exceptions.cs" t="Include" />
+                  <e p="JsonFormatter.cs" t="Include" />
+                  <e p="JsonNode.cs" t="Include" />
+                  <e p="JsonParser.cs" t="Include" />
+                  <e p="JsonSchema.cs" t="Include" />
+                  <e p="JsonSchemaAttribute.cs" t="Include" />
+                  <e p="JsonString.cs" t="Include" />
+                  <e p="JsonValue.cs" t="Include" />
+                  <e p="SimpleJSON.cs" t="Include" />
+                </e>
+                <e p="JsonSchemaValidator" t="Include">
+                  <e p="IJsonSchemaValidator.cs" t="Include" />
+                  <e p="JsonArrayValidator.cs" t="Include" />
+                  <e p="JsonBoolValidator.cs" t="Include" />
+                  <e p="JsonDictionaryValidator.cs" t="Include" />
+                  <e p="JsonEnumValidator.cs" t="Include" />
+                  <e p="JsonNumberValidator.cs" t="Include" />
+                  <e p="JsonObjectValidator.cs" t="Include" />
+                  <e p="JsonSchemaValidator.cs" t="Include" />
+                  <e p="JsonSchemaValidatorFactory.cs" t="Include" />
+                  <e p="JsonStringValidator.cs" t="Include" />
+                </e>
+                <e p="MsgPack" t="Include">
+                  <e p="EndianConverter.cs" t="Include" />
+                  <e p="Exceptions.cs" t="Include" />
+                  <e p="MsgPackFormatter.cs" t="Include" />
+                  <e p="MsgPackNode.cs" t="Include" />
+                  <e p="MsgPackParser.cs" t="Include" />
+                  <e p="MsgPackType.cs" t="Include" />
+                  <e p="MsgPackTypeExtensions.cs" t="Include" />
+                  <e p="MsgPackValue.cs" t="Include" />
+                </e>
+                <e p="StringSegment.cs" t="Include" />
+              </e>
+            </e>
+            <e p="UniUnlit" t="Include">
+              <e p="Editor" t="Include">
+                <e p="UniUnlitEditor.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Utils.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Unity template.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
